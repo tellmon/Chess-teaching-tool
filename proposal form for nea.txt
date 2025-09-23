@@ -1,17 +1,21 @@
-
 What the program is:
+
 
 The program will be a chess learning tool. It will have the board in the center with the number and letters as grid reffrences and on the right hand side will be buttons to switch side to play on  that will flip the board, another button to reset the board to its orriginal state and a button that when you click it will let you draw arrows on the board from the first square you click to the second square you click. and finaly at the bottom right there will be a choise box that has all the avalible board stats to pick from that can be loaded in by sellecting it from the drop down menu.
 
 
+
 How the program will be used:
+
 
 This program will be used in teaching envioments during lessons inorder to teach children how to play chess and work through the moves and improve there skills. The teacher would share there screen of the program and pick the board state they want and then talk the students through the positions on the board and then ask and deminstrate how the position should be played on both sides by useing the switch buttons and arrows to show the next moves from both sides and useing the cowadents on the sides for the children to tell the teacher where the pieces are and should go.
 
 
+
 How the program will work:
 
-The program would work by first a drawing a blank board of objects that whould be a grid and then adding the cowardents position on the left and down side of the board and adding the buttons as well. then the user would pick which board state they want to load into via the drop down menu which then the text file would be opend and the board state read added to a list where each piece in the file will be there full name like pawn or knight and then there x and y corwdaents so a line in the file could be (Kight A 3) showing that the kight piece is at position A3 and we can seperate the colour of the pieces by if the first letter is a captial letter or not. if it is a captial it is a white piece. After the file is read the board would be loaded on and each corwardent has a tile with the same corwadent so the name of the piece would be stored in that tile as well as the colour so when it comes to drawing the piece it whould ask what it in that tile and then it would use that and string and check it with a list and when it is fould draw it at the tiles x and y corwadents.
+
+The program would work by first a drawing a blank board of objects that whould be a grid and then adding the cowardents position on the left and down side of the board and adding the buttons as well. then the user would pick which board state they want to load into via the drop down menu which then the text file would be opend and the board state read added to a list where each piece in the file will be there full name like pawn or knight and then there x and y corwdaents so a line in the file could be (Kight A 3) showing that the knight piece is at position A3 and we can seperate the colour of the pieces by if the first letter is a captial letter or not. if it is a captial it is a white piece. After the file is read the board would be loaded on and each corwardent has a tile with the same corwadent so the name of the piece would be stored in that tile as well as the colour so when it comes to drawing the piece it whould ask what it in that tile and then it would use that and string and check it with a list and when it is fould draw it at the tiles x and y corwadents.
 
 When the switch button is clicked the board would be fliped so the only diffrents in the code is that the for loop would go in reverse order for the y axis and then the board will be redrawn fliped for the other colour to be at the bottom and by flipping that all the pieces will be fliped as that is how the pieces are drawn.
 
@@ -20,3 +24,16 @@ the reset button would work by re reading the file and reding the loading proces
 the arrow button would work by when you click the first square it would remember and then when you click the second square a arrow will be draw useing the corwardents durring this the arrow button will turn red and after the arrow is drawn the red will go away and the arrow button will be deselcted. i Think i will do it as 64 button to make it easier then traking the mouse position and doing maths. this would also be easier as i could store the piece and data for the button in it which makes storeing that info easier.
 
 to choies the diffrent board stats there will be a feild to type in the file name and it will add the .txt and get it that way from a text box else it will have a pop up.
+
+
+
+The 2 chalaging bits:
+
+
+1.
+I think the most challaging bits will be arrow drawing due to the math required and the thickness of the arrow to make it look good enough without fully hiding the pieces bellow it but if we make the arrows somewhat transparent it could work without hideing the pieces.
+
+2.
+I also think the second hardest thing would be flipping the board arround as i feel a lot of things could go wrong just by drawing the board with just the pieces fliped as we have lots of things reliing on that board. maybe if we do it as a varible we could use to toggel to flip that inverse all the need functions it would work smothly.
+
+

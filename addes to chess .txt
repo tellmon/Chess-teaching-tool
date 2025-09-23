@@ -1,0 +1,11 @@
+to store the files use FEN notation (Forsyth–Edwards Notation)      https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation
+
+
+read the files: they have notes, date to sort by, title at the top,
+
+way to save files automaticly with name, data and the pieces useing the same anitation
+
+add a sepret menu for the buttons and file storage to make it look better. like how microsoft office does it a the top left or as a sepret panel
+
+add a way to click on the piece you want from a drop down menu and then click on the tile to add it.
+
