@@ -2,25 +2,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class FIleReader {
+public class FileReader {
 
 
     static String date = "";
     static String data = "";
 
-    public static String readFile(String name){
-        File myObj = new File(name + ".txt");
+    public void readFile(String name){
+        File file = new File(name + ".txt");
 
         String fileInString = "";
 
         // try-with-resources: Scanner will be closed automatically
-        try (Scanner myReader = new Scanner(myObj)) {
-
-            
+        try (Scanner myReader = new Scanner(file)) {
 
             while (myReader.hasNextLine()) {
-
-                fileInString = myReader.nextLine();
+                fileInString += myReader.nextLine(); // itz not reading the data for some reason
             }
         } 
         
@@ -29,22 +26,23 @@ public class FIleReader {
             e.printStackTrace();
         }
 
-        return fileInString;
+        dataSpliter(fileInString);
     }
 
-    public static void dataSpliter(String fileInString){
+    private void dataSpliter(String fileInString){
         Boolean dataNow = false;
 
         for (int i = 0; i < fileInString.length(); i++){
+
             if (fileInString.charAt(i) == '~'){
                 dataNow = true;
             }
 
-            if(dataNow){
+            else if(dataNow){
                 data += fileInString.charAt(i);
             }
             
-            else{
+            else if(!dataNow){
                 date += fileInString.charAt(i);
             }
             
@@ -53,7 +51,7 @@ public class FIleReader {
 
 
     public String getData(){
-        if(getData().equals("")){
+        if(data.equals("")){
             return "No data";
         }
 
@@ -62,22 +60,11 @@ public class FIleReader {
     }
 
     public String getDate(){
-        if(getData().equals("")){
+        if(date.equals("")){
             return "No date";
         }
 
         else
             return date;
-    }
-
-    
-    public static void main(String[] args) {
-        
-        String name = "Basic Start";
-        
-        dataSpliter(readFile(name));
-
-        System.out.println(date);
-        System.out.println(data);
     }
 }

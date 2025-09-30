@@ -7,19 +7,19 @@ import java.nio.file.Paths;
 public class FileMaker {
 
     
-    public static void dataToSave(String name, String date, String data){ // name is the name of file, date is the date saved and data is the data stored in FEN notation
+    public void dataToSave(String name, String date, String data){ // name is the name of file, date is the date saved and data is the data stored in FEN notation
         
         if (createFIle(name) && writeDataToFile(name, date, data)){
             System.out.println("done fine");
         }
 
         else{
-            System.out.println("error as it alreadt exists or it cant write");
+            System.out.println("did not create as ia file already has that name");
         }
     }
 
 
-    public static boolean createFIle(String name){ // if true its made else its already exists
+    private boolean createFIle(String name){ // if true its made else its already exists
         try {
             File myObj = new File(name +".txt" ); // Create File object
             
@@ -41,8 +41,8 @@ public class FileMaker {
 
     }
 
-    public static boolean writeDataToFile(String name, String date, String data){
-        String str = date + "~ \n" + data;
+    private boolean writeDataToFile(String name, String date, String data){
+        String str = date + "\n~\n" + data;
 
         Path path = Paths.get(name+ ".txt");
         byte[] strToBytes = str.getBytes();
@@ -58,15 +58,5 @@ public class FileMaker {
             System.out.println("Failed to write");
         }
         return false;
-    }
-
-
-    public static void main(String[] args) {
-
-        String file = "Basic Start";
-        String date = "12/12/2012";
-        String data = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";
-
-        dataToSave(file, date, data);
     }
 }
