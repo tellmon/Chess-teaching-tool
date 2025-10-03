@@ -24,8 +24,6 @@ public class DataToArray {
         int xAxis = 0;
         boolean skipRest = false;
 
-        System.out.println(data);
-
         for(int i = 0; i < data.length(); i ++){
 
             if(data.charAt(i) == ' '){
