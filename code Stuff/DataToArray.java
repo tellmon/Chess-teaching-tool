@@ -24,17 +24,27 @@ public class DataToArray {
         int xAxis = 0;
         boolean skipRest = false;
 
+        System.out.println(data);
+
         for(int i = 0; i < data.length(); i ++){
-            if(Character.isDigit(data.charAt(i)) && !skipRest){
 
-                System.out.println("Number is " + data.charAt(i));
-                System.out.println("We are at "+i);
-                System.out.println("skipRest is " + skipRest);
+            if(data.charAt(i) == ' '){
+                skipRest = true;
+            }
 
-                for(int x = 0; i < data.charAt(i); i ++){
-                    xAxis += x;
+            else if(Character.isDigit(data.charAt(i)) && !skipRest){
+
+                int stopAt = Character.getNumericValue(data.charAt(i));
+
+                for(int h = 0; h < stopAt; h ++){
+                    
                     chessBoardArray[xAxis][nextLineCount] = ' ';
+                    xAxis += 1;
                 }
+            }
+
+            else if (skipRest) {
+                positonData += data.charAt(i);
             }
 
             else if(!Character.isDigit(data.charAt(i)) && !skipRest){
@@ -43,24 +53,30 @@ public class DataToArray {
                     xAxis = 0;
                 }
 
-                else if(data.charAt(i) == ' '){
-                    skipRest = true;
-                }
-
                 else{
-                    xAxis += 1;
                     chessBoardArray[xAxis][nextLineCount] = data.charAt(i);
+                    xAxis += 1;
                 }
-            }
-
-            else if (skipRest) {
-                positonData += data.charAt(i);
             }
         }
     }
 
     public char[][] returnChessArray(){
         return chessBoardArray;
+    }
+
+    public String boardStateOutput(){
+
+        String output = "";
+
+        for(int y = 0; y < 8; y ++){
+            for(int x = 0; x < 8; x ++){
+                output += chessBoardArray[x][y];
+            }
+            output += "\n";
+        }
+
+        return output;
     }
 
     public void reset(){
