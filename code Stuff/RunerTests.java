@@ -1,6 +1,14 @@
 public class RunerTests {
     public static void main(String[] args) {
-        
+        panel();
+    }
+
+    public static void panel(){
+        GridOfButtons gridOfButtons = new GridOfButtons();
+
+    }
+
+    public static void fileStuff(){
         FileMaker fileMaker = new FileMaker();
         FileReader fileReader = new FileReader();
         DataToArray dataToArray = new DataToArray();
@@ -19,5 +27,6 @@ public class RunerTests {
         dataToArray.inputing(fileReader.getData());
 
         System.out.println(dataToArray.boardStateOutput());
+
     }
 }
