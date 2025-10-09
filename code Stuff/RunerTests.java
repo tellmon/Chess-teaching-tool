@@ -4,7 +4,7 @@ public class RunerTests {
     }
 
     public static void panel(){
-        GridOfButtons gridOfButtons = new GridOfButtons();
+        Board board = new Board();
 
     }
 
