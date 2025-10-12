@@ -1,14 +1,8 @@
 public class RunerTests {
     public static void main(String[] args) {
-        panel();
-    }
+        
+        System.out.println();
 
-    public static void panel(){
-        Board board = new Board();
-
-    }
-
-    public static void fileStuff(){
         FileMaker fileMaker = new FileMaker();
         FileReader fileReader = new FileReader();
         DataToArray dataToArray = new DataToArray();
@@ -28,5 +22,9 @@ public class RunerTests {
 
         System.out.println(dataToArray.boardStateOutput());
 
+        Board board = new Board();
+
+        board.giveChessBoardState(dataToArray.returnChessArray());
+        board.makeBoardDisplay();
     }
 }
