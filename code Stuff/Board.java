@@ -37,11 +37,15 @@ public class Board implements ActionListener {
     int hightSecond = 0;
     int widthSecond = 0;
 
-    char[][] chessBoardState = new char[8][8];
-
-    
     int width = 0;
     int height = 0; 
+
+    char[][] chessBoardState = new char[8][8];
+
+    boolean movePiece = false;
+
+    String Piece = "";
+    
 
     public void makeBoardDisplay(){
         // get it to be the same size as the screen
@@ -150,15 +154,35 @@ public class Board implements ActionListener {
 
         double angle = 0;
 
-        double xDiff = xPosSecond - xPosSecond;
+        double xDiff = xPosSecond - xPosFirst;
         double yDiff = yPosSecond - yPosFirst;
 
-        angle = Math.toDegrees(Math.atan2(yDiff, xDiff));
-
+        angle = Math.atan2(yDiff, xDiff);
 
         //TRIANGLE  need to rotate somehow though
-        g2.rotate(Math.toRadians(angle));
+        g2.rotate(angle, xPosSecond, yPosSecond);
         g2.fillPolygon(new int[] {xPosSecond, xPosSecond - widthSecond, xPosSecond + widthSecond}, new int[] {yPosSecond, yPosSecond - hightSecond, yPosSecond + hightSecond}, 3);
+    }
+
+    private void movePieces(ActionEvent e){
+
+        for (int x = 0; x < 8; x ++){
+            for (int y = 0; y < 8; y ++){
+                if (e.getSource() == buttonArray[x][y]){
+                    if (movePiece){
+                        Piece = buttonArray[x][y].getName();
+                        movePiece = false;
+                    }
+                    
+                    else{
+                        buttonArray[x][y].setName(Piece);;
+                        movePiece = true;
+                        System.out.println("piece = " + Piece);
+                    }
+                    
+                }
+           }
+        }
     }
 
     private void getXAndYOfButtonInPixels(ActionEvent e){
@@ -191,8 +215,7 @@ public class Board implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        getXAndYOfButtonInPixels(e);
+        //getXAndYOfButtonInPixels(e);
+        movePieces(e);
     }
-
-
 }
