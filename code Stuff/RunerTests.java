@@ -22,9 +22,6 @@ public class RunerTests {
 
         System.out.println(dataToArray.boardStateOutput());
 
-        Board board = new Board();
-
-        board.giveChessBoardState(dataToArray.returnChessArray());
-        board.makeBoardDisplay();
+        FramePanel framePanel = new FramePanel(dataToArray.returnChessArray());
     }
 }
