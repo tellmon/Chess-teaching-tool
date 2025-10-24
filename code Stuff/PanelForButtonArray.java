@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class PanelForButtonArray implements ActionListener{
+public class PanelForButtonArray extends JPanel implements ActionListener{
 
     /*
      * need to find a way to draw for here
@@ -56,19 +58,13 @@ public class PanelForButtonArray implements ActionListener{
         
         return panel;
     }
+    
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D)g;
 
-    public void setButtonArray(char[][] piecesCharArray){
-        chessBoardState = piecesCharArray;
-    }
-
-    public char[][] getBoardState(){
-        for (int x = 0; x < 8; x ++){
-            for (int y = 0; y < 8; y ++){
-                chessBoardState[y][x] = buttonArray[x][y].getText().charAt(0);
-            }
-        }
-
-        return chessBoardState;
+        g.setColor(Color.BLACK);
+        g2.fillRect(0, 0, 1000, 1000);
     }
 
     private void movePieces(ActionEvent e){
@@ -78,7 +74,7 @@ public class PanelForButtonArray implements ActionListener{
                 if (e.getSource() == buttonArray[x][y]){
 
                     // needs to check if its a pice then pick it up if its not then dont but ever way let it place. 
-                    if (movePiece && !buttonArray[x][y].getText().matches("")){
+                    if (movePiece && !buttonArray[x][y].getText().matches("") && !buttonArray[x][y].getText().matches(" ")){
                         Piece = buttonArray[x][y].getText();
 
                         movePiece = false;
@@ -98,5 +94,20 @@ public class PanelForButtonArray implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         movePieces(e);
+        repaint();
+    }
+
+    public void setButtonArray(char[][] piecesCharArray){
+        chessBoardState = piecesCharArray;
+    }
+
+    public char[][] getBoardState(){
+        for (int x = 0; x < 8; x ++){
+            for (int y = 0; y < 8; y ++){
+                chessBoardState[y][x] = buttonArray[x][y].getText().charAt(0);
+            }
+        }
+
+        return chessBoardState;
     }
 }
