@@ -11,6 +11,11 @@ import javax.swing.JPanel;
 
 public class PanelForButtonArray implements ActionListener{
 
+    /*
+     * need to find a way to draw for here
+     * like import g2 
+     */
+
     String Piece = "";
     boolean movePiece = true;
 
@@ -54,6 +59,16 @@ public class PanelForButtonArray implements ActionListener{
 
     public void setButtonArray(char[][] piecesCharArray){
         chessBoardState = piecesCharArray;
+    }
+
+    public char[][] getBoardState(){
+        for (int x = 0; x < 8; x ++){
+            for (int y = 0; y < 8; y ++){
+                chessBoardState[y][x] = buttonArray[x][y].getText().charAt(0);
+            }
+        }
+
+        return chessBoardState;
     }
 
     private void movePieces(ActionEvent e){

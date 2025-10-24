@@ -4,7 +4,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-public class FramePanel {
+public class FramePanel extends JFrame{
 
     int width = 0;
     int height = 0;
