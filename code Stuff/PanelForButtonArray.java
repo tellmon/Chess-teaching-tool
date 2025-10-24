@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +12,7 @@ import javax.swing.JPanel;
 public class PanelForButtonArray implements ActionListener{
 
     String Piece = "";
-    boolean movePiece = false;
+    boolean movePiece = true;
 
     char[][] chessBoardState = new char[8][8];
     JButton[][] buttonArray = new JButton[8][8];
@@ -27,6 +28,9 @@ public class PanelForButtonArray implements ActionListener{
             for (int y = 0; y < 8; y ++){
                 buttonArray[x][y] = new JButton();
                 buttonArray[x][y].setText(""+chessBoardState[y][x]);
+                
+                buttonArray[x][y].setFont(new Font("Arial", Font.PLAIN, 80));
+
                 buttonArray[x][y].addActionListener(this);
 
                 if(switchColours){
@@ -57,17 +61,18 @@ public class PanelForButtonArray implements ActionListener{
         for (int x = 0; x < 8; x ++){
             for (int y = 0; y < 8; y ++){
                 if (e.getSource() == buttonArray[x][y]){
-                    if (movePiece){
+
+                    // needs to check if its a pice then pick it up if its not then dont but ever way let it place. 
+                    if (movePiece && !buttonArray[x][y].getText().matches("")){
                         Piece = buttonArray[x][y].getText();
+
                         movePiece = false;
                         buttonArray[x][y].setText("");
-                        System.out.println("Piece = " + buttonArray[x][y].getText());
                     }
                     
-                    else{
+                    else if(!movePiece){
                         buttonArray[x][y].setText(Piece);;
                         movePiece = true;
-                        System.out.println("Pieces = " + Piece);
                     }
                     
                 }
@@ -77,7 +82,6 @@ public class PanelForButtonArray implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         movePieces(e);
     }
 }

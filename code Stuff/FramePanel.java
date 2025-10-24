@@ -13,6 +13,7 @@ public class FramePanel {
 
         PanelForButtonArray panelForButtonArray = new PanelForButtonArray();
         TopMenu topMenu = new TopMenu();
+        SidePartsOfBoard sidePartsOfBoard = new SidePartsOfBoard();
 
         panelForButtonArray.setButtonArray(buttonArray);
 
@@ -30,6 +31,8 @@ public class FramePanel {
 
         board.add(panelForButtonArray.buttonArray(), BorderLayout.CENTER);
         board.add(topMenu.topMenuMaker(), BorderLayout.NORTH);
+        board.add(sidePartsOfBoard.numbers(), BorderLayout.WEST);
+        board.add(sidePartsOfBoard.letter(), BorderLayout.SOUTH);
         }
     }
 

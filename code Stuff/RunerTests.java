@@ -20,8 +20,6 @@ public class RunerTests {
 
         dataToArray.inputing(fileReader.getData());
 
-        System.out.println(dataToArray.boardStateOutput());
-
         FramePanel framePanel = new FramePanel(dataToArray.returnChessArray());
     }
 }
