@@ -3,36 +3,55 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 public class FramePanel extends JFrame{
 
     int width = 0;
     int height = 0;
 
+    PanelForButtonArray panelForButtonArray = new PanelForButtonArray();
+    TopMenu topMenu = new TopMenu();
+    SidePartsOfBoard sidePartsOfBoard = new SidePartsOfBoard();
+    ArrowLogic arrowLogic = new ArrowLogic();
+    JFrame board = new JFrame("Chess Board");
+
     public FramePanel(char[][] buttonArray){
 
-        PanelForButtonArray panelForButtonArray = new PanelForButtonArray();
-        TopMenu topMenu = new TopMenu();
-        SidePartsOfBoard sidePartsOfBoard = new SidePartsOfBoard();
-
         panelForButtonArray.setButtonArray(buttonArray);
+        JPanel boardPanel = panelForButtonArray.buttonArray();
 
         // get it to be the same size as the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         width = (int) screenSize.getWidth();
         height = (int) screenSize.getHeight();
 
-        JFrame board = new JFrame("Chess Board");
-
+        // sets up the board
         board.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         board.setSize(width, height);
         board.setVisible(true);
         board.isAlwaysOnTop();
+        
 
-        board.add(panelForButtonArray.buttonArray(), BorderLayout.CENTER);
+        // creates the layaed panel
+        JLayeredPane layeredPane = new JLayeredPane();
+
+        layeredPane.add(boardPanel, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(arrowLogic, JLayeredPane.DRAG_LAYER);
+
+
+        //tried this. dosesnt work
+        layeredPane.setBounds(0, 0, width, height);
+        layeredPane.setPreferredSize(new Dimension(width, height));
+        layeredPane.setSize(new Dimension(width, height));
+        boardPanel.setSize(new Dimension(width, height)); 
+        arrowLogic.setSize(new Dimension(width, height));
+
+        // adds it all tp the board
+        board.add(layeredPane, BorderLayout.CENTER);
         board.add(topMenu.topMenuMaker(), BorderLayout.NORTH);
         board.add(sidePartsOfBoard.numbers(), BorderLayout.WEST);
         board.add(sidePartsOfBoard.letter(), BorderLayout.SOUTH);
-        }
     }
-
+}

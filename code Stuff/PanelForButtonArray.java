@@ -11,7 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class PanelForButtonArray extends JPanel implements ActionListener{
+public class PanelForButtonArray implements ActionListener{
 
     /*
      * need to find a way to draw for here
@@ -23,6 +23,7 @@ public class PanelForButtonArray extends JPanel implements ActionListener{
 
     char[][] chessBoardState = new char[8][8];
     JButton[][] buttonArray = new JButton[8][8];
+
 
     public JPanel buttonArray() {
         
@@ -58,14 +59,6 @@ public class PanelForButtonArray extends JPanel implements ActionListener{
         
         return panel;
     }
-    
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D)g;
-
-        g.setColor(Color.BLACK);
-        g2.fillRect(0, 0, 1000, 1000);
-    }
 
     private void movePieces(ActionEvent e){
 
@@ -94,7 +87,6 @@ public class PanelForButtonArray extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         movePieces(e);
-        repaint();
     }
 
     public void setButtonArray(char[][] piecesCharArray){

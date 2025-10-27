@@ -1,11 +1,13 @@
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.geom.Line2D;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
-public class ArrowLogic {
+public class ArrowLogic extends JPanel{
 
     int xPosFirst = 0;
     int yPosFirst = 0;
@@ -15,6 +17,15 @@ public class ArrowLogic {
 
     int hightSecond = 0;
     int widthSecond = 0;
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D)g;
+
+        g.setColor(Color.BLACK);
+        g2.fillRect(0, 0, 1000, 1000);
+
+    }
 
     public void drawArrow(Graphics2D g2) {
 
