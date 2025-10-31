@@ -18,31 +18,37 @@ public class ArrowLogic extends JPanel{
     int hightSecond = 0;
     int widthSecond = 0;
 
+    boolean gotBothPos = false;
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
 
         g.setColor(Color.BLACK);
-        g2.fillRect(0, 0, 1000, 1000);
+        g2.fillRect(0, 0, 100, 100);
+
+        drawArrow(g2);
 
     }
 
-    public void drawArrow(Graphics2D g2) {
+    private void drawArrow(Graphics2D g2) {
 
-        g2.setColor(Color.RED);
-        //line
-        g2.draw(new Line2D.Double(xPosFirst, yPosFirst, xPosSecond, yPosSecond));
+        if(gotBothPos){
 
-        double angle = 0;
+            g2.setColor(Color.RED);
+            //line
+            g2.draw(new Line2D.Double(xPosFirst, yPosFirst, xPosSecond, yPosSecond));
 
-        double xDiff = xPosSecond - xPosFirst;
-        double yDiff = yPosSecond - yPosFirst;
+            double angle = 0;
 
-        angle = Math.atan2(yDiff, xDiff);
+            double xDiff = xPosSecond - xPosFirst;
+            double yDiff = yPosSecond - yPosFirst;
 
-        //TRIANGLE  need to rotate somehow though
-        g2.rotate(angle, xPosSecond, yPosSecond);
-        g2.fillPolygon(new int[] {xPosSecond, xPosSecond - widthSecond, xPosSecond + widthSecond}, new int[] {yPosSecond, yPosSecond - hightSecond, yPosSecond + hightSecond}, 3);
+            angle = Math.atan2(yDiff, xDiff);
+
+            g2.rotate(angle, xPosSecond, yPosSecond);
+            g2.fillPolygon(new int[] {xPosSecond, xPosSecond - widthSecond, xPosSecond + widthSecond}, new int[] {yPosSecond, yPosSecond - hightSecond, yPosSecond + hightSecond}, 3);
+        }
     }
 
     public void getXAndYOfButtonInPixels(ActionEvent e, JButton[][] buttonArray ){
@@ -53,6 +59,7 @@ public class ArrowLogic extends JPanel{
                     if (e.getSource() == buttonArray[x][y]){
                         xPosFirst = buttonArray[x][y].getX() + buttonArray[x][y].getWidth() / 2;
                         yPosFirst = buttonArray[x][y].getY() + buttonArray[x][y].getHeight() / 2;
+                        gotBothPos = false;
                     }
                 }
             }
@@ -66,9 +73,14 @@ public class ArrowLogic extends JPanel{
                         yPosSecond = buttonArray[x][y].getY() + buttonArray[x][y].getHeight() / 2;
                         hightSecond = buttonArray[x][y].getHeight();
                         widthSecond = buttonArray[x][y].getWidth();
+                        gotBothPos = true;
                     }
                 }
             }
         }
+    }
+
+    public boolean checkIfBothPosHave(){
+        return gotBothPos;
     }
 }

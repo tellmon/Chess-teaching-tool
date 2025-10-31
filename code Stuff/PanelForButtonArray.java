@@ -24,6 +24,7 @@ public class PanelForButtonArray implements ActionListener{
     char[][] chessBoardState = new char[8][8];
     JButton[][] buttonArray = new JButton[8][8];
 
+    ActionEvent lastEvent;
 
     public JPanel buttonArray() {
         
@@ -87,10 +88,19 @@ public class PanelForButtonArray implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         movePieces(e);
+        lastEvent = e;
     }
+
+    public ActionEvent getActionEvent(){
+        return lastEvent;
+    }    
 
     public void setButtonArray(char[][] piecesCharArray){
         chessBoardState = piecesCharArray;
+    }
+
+    public JButton[][] getButtonArray(){
+        return buttonArray;
     }
 
     public char[][] getBoardState(){
