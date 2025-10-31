@@ -46,11 +46,6 @@ public class ArrowLogic extends JPanel{
 
             g2.rotate(angle, xPosSecond, yPosSecond);
             g2.fillPolygon(new int[] {xPosSecond, xPosSecond - widthSecond, xPosSecond + widthSecond}, new int[] {yPosSecond, yPosSecond - hightSecond, yPosSecond + hightSecond}, 3);
-
-            xPosFirst = 0;
-            yPosFirst = 0; // need to keep to draw every time but need to erase for new arrow. 
-            xPosSecond = 0; // have a list of arrows and erase when arrow mode is off. 
-            yPosSecond = 0;
         }
     }
 
@@ -85,5 +80,12 @@ public class ArrowLogic extends JPanel{
 
     public boolean checkIfBothPosHave(){
         return gotBothPos;
+    }
+
+    public void eraseArrows(){
+        xPosFirst = 0;
+        yPosFirst = 0;
+        xPosSecond = 0;
+        yPosSecond = 0;
     }
 }

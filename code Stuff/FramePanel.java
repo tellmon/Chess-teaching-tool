@@ -19,6 +19,8 @@ public class FramePanel extends JFrame{
 
     char[][] buttonArray;
 
+    JPanel boardPanel;
+
     public FramePanel(char[][] buttonArray){
         panelForButtonArray = new PanelForButtonArray(this);
         this.buttonArray = buttonArray;
@@ -26,7 +28,7 @@ public class FramePanel extends JFrame{
 
     public void SetPanelUp(){
         panelForButtonArray.setButtonArray(buttonArray);
-        JPanel boardPanel = panelForButtonArray.buttonArray();
+        boardPanel = panelForButtonArray.buttonArray();
 
         // get it to be the same size as the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -64,7 +66,16 @@ public class FramePanel extends JFrame{
         boolean arrowMode = topMenu.checkArrowMode();
         
         if(arrowMode){
+            panelForButtonArray.setLetMove(false);
             arrowLogic.getXAndYOfButtonInPixels(panelForButtonArray.getActionEvent(), panelForButtonArray.getButtonArray());
+            
         }
+
+        else{
+            arrowLogic.eraseArrows();
+            panelForButtonArray.setLetMove(true);
+        }
+
+        boardPanel.repaint();
     }
 }

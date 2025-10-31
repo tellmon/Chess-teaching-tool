@@ -12,7 +12,9 @@ import javax.swing.JPanel;
 public class PanelForButtonArray implements ActionListener{
 
     String Piece = "";
+
     boolean movePiece = true;
+    boolean letMove = true;
 
     char[][] chessBoardState = new char[8][8];
     JButton[][] buttonArray = new JButton[8][8];
@@ -61,34 +63,39 @@ public class PanelForButtonArray implements ActionListener{
     }
 
     private void movePieces(ActionEvent e){
+        if(letMove){
+            for (int x = 0; x < 8; x ++){
+                for (int y = 0; y < 8; y ++){
+                    if (e.getSource() == buttonArray[x][y]){
 
-        for (int x = 0; x < 8; x ++){
-            for (int y = 0; y < 8; y ++){
-                if (e.getSource() == buttonArray[x][y]){
+                        // needs to check if its a pice then pick it up if its not then dont but ever way let it place. 
+                        if (movePiece && !buttonArray[x][y].getText().matches("") && !buttonArray[x][y].getText().matches(" ")){
+                            Piece = buttonArray[x][y].getText();
 
-                    // needs to check if its a pice then pick it up if its not then dont but ever way let it place. 
-                    if (movePiece && !buttonArray[x][y].getText().matches("") && !buttonArray[x][y].getText().matches(" ")){
-                        Piece = buttonArray[x][y].getText();
-
-                        movePiece = false;
-                        buttonArray[x][y].setText("");
+                            movePiece = false;
+                            buttonArray[x][y].setText("");
+                        }
+                        
+                        else if(!movePiece){
+                            buttonArray[x][y].setText(Piece);;
+                            movePiece = true;
+                        }
+                        
                     }
-                    
-                    else if(!movePiece){
-                        buttonArray[x][y].setText(Piece);;
-                        movePiece = true;
-                    }
-                    
                 }
-           }
-        }
+            }
+        }   
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        movePieces(e);
         lastEvent = e;
         frame.setPosisitonsForArrows();
+        movePieces(e);
+    }
+
+    public void setLetMove(boolean letMove){
+        this.letMove = letMove;
     }
 
     public ActionEvent getActionEvent(){
