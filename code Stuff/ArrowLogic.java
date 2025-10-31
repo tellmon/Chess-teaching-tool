@@ -1,3 +1,4 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -24,11 +25,7 @@ public class ArrowLogic extends JPanel{
         super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
 
-        g.setColor(Color.BLACK);
-        g2.fillRect(0, 0, 100, 100);
-
         drawArrow(g2);
-
     }
 
     private void drawArrow(Graphics2D g2) {
@@ -36,6 +33,7 @@ public class ArrowLogic extends JPanel{
         if(gotBothPos){
 
             g2.setColor(Color.RED);
+            g2.setStroke(new BasicStroke(10));
             //line
             g2.draw(new Line2D.Double(xPosFirst, yPosFirst, xPosSecond, yPosSecond));
 
@@ -48,6 +46,11 @@ public class ArrowLogic extends JPanel{
 
             g2.rotate(angle, xPosSecond, yPosSecond);
             g2.fillPolygon(new int[] {xPosSecond, xPosSecond - widthSecond, xPosSecond + widthSecond}, new int[] {yPosSecond, yPosSecond - hightSecond, yPosSecond + hightSecond}, 3);
+
+            xPosFirst = 0;
+            yPosFirst = 0; // need to keep to draw every time but need to erase for new arrow. 
+            xPosSecond = 0; // have a list of arrows and erase when arrow mode is off. 
+            yPosSecond = 0;
         }
     }
 

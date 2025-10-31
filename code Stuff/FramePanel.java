@@ -11,14 +11,20 @@ public class FramePanel extends JFrame{
     int width = 0;
     int height = 0;
 
-    PanelForButtonArray panelForButtonArray = new PanelForButtonArray();
+    PanelForButtonArray panelForButtonArray;
     TopMenu topMenu = new TopMenu();
     SidePartsOfBoard sidePartsOfBoard = new SidePartsOfBoard();
     ArrowLogic arrowLogic = new ArrowLogic();
     JFrame board = new JFrame("Chess Board");
 
-    public FramePanel(char[][] buttonArray){
+    char[][] buttonArray;
 
+    public FramePanel(char[][] buttonArray){
+        panelForButtonArray = new PanelForButtonArray(this);
+        this.buttonArray = buttonArray;
+    }
+
+    public void SetPanelUp(){
         panelForButtonArray.setButtonArray(buttonArray);
         JPanel boardPanel = panelForButtonArray.buttonArray();
 
@@ -55,12 +61,9 @@ public class FramePanel extends JFrame{
     }
 
     public void setPosisitonsForArrows(){ 
-        // run this every time a button is pressed inside buttonArray
         boolean arrowMode = topMenu.checkArrowMode();
-        System.out.println("running this");
-
+        
         if(arrowMode){
-            System.out.println("arrow mode on");
             arrowLogic.getXAndYOfButtonInPixels(panelForButtonArray.getActionEvent(), panelForButtonArray.getButtonArray());
         }
     }

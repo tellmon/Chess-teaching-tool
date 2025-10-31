@@ -12,14 +12,12 @@ public class RunerTests {
         String date = "03/9/2025";
         String data = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
-        //fileMaker.dataToSave(name, date, data);
 
         fileReader.readFile(name);
-
-        //System.out.println("date = "+fileReader.getDate() + " \nData = "+fileReader.getData());
 
         dataToArray.inputing(fileReader.getData());
 
         FramePanel framePanel = new FramePanel(dataToArray.returnChessArray());
+        framePanel.SetPanelUp();
     }
 }

@@ -1,8 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,11 +11,6 @@ import javax.swing.JPanel;
 
 public class PanelForButtonArray implements ActionListener{
 
-    /*
-     * need to find a way to draw for here
-     * like import g2 
-     */
-
     String Piece = "";
     boolean movePiece = true;
 
@@ -25,6 +18,12 @@ public class PanelForButtonArray implements ActionListener{
     JButton[][] buttonArray = new JButton[8][8];
 
     ActionEvent lastEvent;
+
+    private FramePanel frame;
+
+    public PanelForButtonArray(FramePanel frame) {
+        this.frame = frame;
+    }
 
     public JPanel buttonArray() {
         
@@ -89,6 +88,7 @@ public class PanelForButtonArray implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         movePieces(e);
         lastEvent = e;
+        frame.setPosisitonsForArrows();
     }
 
     public ActionEvent getActionEvent(){
