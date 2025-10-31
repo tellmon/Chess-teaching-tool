@@ -54,10 +54,11 @@ public class FramePanel extends JFrame{
         board.add(sidePartsOfBoard.letter(), BorderLayout.SOUTH);
     }
 
-    public void setPosisitonsForArrows(){ // run this every time a button is pressed inside buttonArray
+    public void setPosisitonsForArrows(){ 
+        // run this every time a button is pressed inside buttonArray
         boolean arrowMode = topMenu.checkArrowMode();
         System.out.println("running this");
-        
+
         if(arrowMode){
             System.out.println("arrow mode on");
             arrowLogic.getXAndYOfButtonInPixels(panelForButtonArray.getActionEvent(), panelForButtonArray.getButtonArray());
