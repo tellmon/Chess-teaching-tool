@@ -1,12 +1,15 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
-public class FramePanel extends JFrame{
+public class FramePanel extends JFrame implements ActionListener{
 
     int width = 0;
     int height = 0;
@@ -17,6 +20,8 @@ public class FramePanel extends JFrame{
     ArrowLogic arrowLogic = new ArrowLogic();
     JFrame board = new JFrame("Chess Board");
 
+    Timer tick = new Timer(40, this);
+
     char[][] buttonArray;
 
     JPanel boardPanel;
@@ -24,6 +29,7 @@ public class FramePanel extends JFrame{
     public FramePanel(char[][] buttonArray){
         panelForButtonArray = new PanelForButtonArray(this);
         this.buttonArray = buttonArray;
+        tick.start();
     }
 
     public void SetPanelUp(){
@@ -68,7 +74,6 @@ public class FramePanel extends JFrame{
         if(arrowMode){
             panelForButtonArray.setLetMove(false);
             arrowLogic.getXAndYOfButtonInPixels(panelForButtonArray.getActionEvent(), panelForButtonArray.getButtonArray());
-            
         }
 
         else{
@@ -77,5 +82,19 @@ public class FramePanel extends JFrame{
         }
 
         boardPanel.repaint();
+    }
+
+    private void actionLogic(ActionEvent e){
+        if(topMenu.checkSwitchSides()){
+            panelForButtonArray.flipBoard();
+            topMenu.switchSidesOff();
+       }
+       
+       boardPanel.repaint();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+       actionLogic(e);
     }
 }

@@ -17,7 +17,7 @@ public class FileReader {
         try (Scanner myReader = new Scanner(file)) {
 
             while (myReader.hasNextLine()) {
-                fileInString += myReader.nextLine(); // itz not reading the data for some reason
+                fileInString += myReader.nextLine();
             }
         } 
         

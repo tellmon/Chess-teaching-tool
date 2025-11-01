@@ -73,7 +73,7 @@ public class PanelForButtonArray implements ActionListener{
                             Piece = buttonArray[x][y].getText();
 
                             movePiece = false;
-                            buttonArray[x][y].setText("");
+                            buttonArray[x][y].setText(" ");
                         }
                         
                         else if(!movePiece){
@@ -85,6 +85,50 @@ public class PanelForButtonArray implements ActionListener{
                 }
             }
         }   
+    }
+
+    public void flipBoard(){
+
+        JButton[][] flipedButtonArray = new JButton[8][8];
+
+        // fliping in x and y axis
+        for (int x = 0; x < 8; x ++){
+            for (int y = 0; y < 8; y ++){
+                flipedButtonArray[x][y] = new JButton();  
+            }
+        }
+
+        //flipping axis
+        for (int x = 0; x < 8; x ++){
+            for (int y = 0; y < 8; y ++){
+                flipedButtonArray[-y + 7][-(x-7)].setText(buttonArray[y][x].getText());
+            }
+        }
+
+        for (int x = 0; x < 8; x ++){
+            for (int y = 0; y < 8; y ++){
+                buttonArray[x][y].setText(flipedButtonArray[y][x].getText());
+            }
+        }
+        
+        /**    
+        * logic:
+        * 
+        * so we need to flip the board in the black and white center lines.
+        * so y = x
+        * and
+        * y = -(x-7) # this is using the first square a 0,0 not 1,1 to as we are doing arrays
+        * 
+        * to get the x its -y + 7 = x
+        * and for the y its y = -(x-7) 
+        * we would need this in a sepreat list so we can switch between them, 
+        * 
+        * Switch between the two list like this:
+        * temp = x
+        * x = y
+        * y = temp
+        * 
+        */
     }
 
     @Override

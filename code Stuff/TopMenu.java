@@ -15,6 +15,7 @@ public class TopMenu implements ActionListener{
     JButton saveFile = new JButton();
 
     boolean arrowModeOn = false;
+    boolean runSwitchSides = false;
 
     public JPanel topMenuMaker(){
 
@@ -37,6 +38,7 @@ public class TopMenu implements ActionListener{
 
         switchSides = new JButton("Switch Sides");
         switchSides.setBackground(Color.white);
+        switchSides.addActionListener(this);
         switchSides.setFont(new Font("Arial", Font.PLAIN, 80));
         panel.add(switchSides);
 
@@ -65,6 +67,10 @@ public class TopMenu implements ActionListener{
 
         }
 
+        else if(e.getSource() == switchSides){
+            runSwitchSides = !runSwitchSides;
+        }
+
         else if(e.getSource() == arrowMode){
             arrowModeOn = !arrowModeOn;
 
@@ -86,6 +92,14 @@ public class TopMenu implements ActionListener{
         // TODO Auto-generated method stub
         actionDoer(e);
     } 
+
+    public boolean checkSwitchSides(){
+        return runSwitchSides;
+    }
+
+    public void switchSidesOff(){
+        runSwitchSides = false;
+    }
 
     public boolean checkArrowMode(){
         return arrowModeOn;
