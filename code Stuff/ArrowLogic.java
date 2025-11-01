@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 
 import javax.swing.JButton;
@@ -29,25 +30,29 @@ public class ArrowLogic extends JPanel{
     }
 
     private void drawArrow(Graphics2D g2) {
-
-        if(gotBothPos){
-
+        if (gotBothPos) {
             g2.setColor(Color.RED);
             g2.setStroke(new BasicStroke(10));
-            //line
             g2.draw(new Line2D.Double(xPosFirst, yPosFirst, xPosSecond, yPosSecond));
-
-            double angle = 0;
 
             double xDiff = xPosSecond - xPosFirst;
             double yDiff = yPosSecond - yPosFirst;
+            double angle = Math.atan2(yDiff, xDiff);
 
-            angle = Math.atan2(yDiff, xDiff);
+            int arrowLength = widthSecond / 4;
+            int arrowWidth = hightSecond / 4;
 
+            int[] xForTriangle = {xPosSecond, xPosSecond - arrowLength, xPosSecond - arrowLength };
+            int[] yForTriangle = {yPosSecond, yPosSecond - arrowWidth, yPosSecond + arrowWidth};
+
+            AffineTransform old = g2.getTransform();
             g2.rotate(angle, xPosSecond, yPosSecond);
-            g2.fillPolygon(new int[] {xPosSecond, xPosSecond - widthSecond, xPosSecond + widthSecond}, new int[] {yPosSecond, yPosSecond - hightSecond, yPosSecond + hightSecond}, 3);
+            g2.setColor(Color.RED);
+            g2.fillPolygon(xForTriangle, yForTriangle, 3);
+            g2.setTransform(old);
         }
     }
+
 
     public void getXAndYOfButtonInPixels(ActionEvent e, JButton[][] buttonArray ){
 
@@ -69,8 +74,8 @@ public class ArrowLogic extends JPanel{
                     if (e.getSource() == buttonArray[x][y]){
                         xPosSecond = buttonArray[x][y].getX() + buttonArray[x][y].getWidth() / 2;
                         yPosSecond = buttonArray[x][y].getY() + buttonArray[x][y].getHeight() / 2;
-                        hightSecond = buttonArray[x][y].getHeight();
-                        widthSecond = buttonArray[x][y].getWidth();
+                        hightSecond = buttonArray[x][y].getHeight() ;
+                        widthSecond = buttonArray[x][y].getWidth() ;
                         gotBothPos = true;
                     }
                 }
