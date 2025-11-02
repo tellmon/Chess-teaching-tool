@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class FileReader {
 
-
-    static String date = "";
     static String data = "";
 
     public void readFile(String name){
@@ -34,21 +32,9 @@ public class FileReader {
 
         for (int i = 0; i < fileInString.length(); i++){
 
-            if (fileInString.charAt(i) == '~'){
-                dataNow = true;
-            }
-
-            else if(dataNow){
-                data += fileInString.charAt(i);
-            }
-            
-            else if(!dataNow){
-                date += fileInString.charAt(i);
-            }
-            
+            data += fileInString.charAt(i);
         }
     }
-
 
     public String getData(){
         if(data.equals("")){
@@ -57,14 +43,5 @@ public class FileReader {
 
         else
             return data;
-    }
-
-    public String getDate(){
-        if(date.equals("")){
-            return "No date";
-        }
-
-        else
-            return date;
     }
 }

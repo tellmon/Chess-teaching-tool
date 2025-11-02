@@ -1,12 +1,15 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.Timer;
 
 public class FramePanel extends JFrame implements ActionListener{
@@ -19,6 +22,9 @@ public class FramePanel extends JFrame implements ActionListener{
     SidePartsOfBoard sidePartsOfBoard = new SidePartsOfBoard();
     ArrowLogic arrowLogic = new ArrowLogic();
     JFrame board = new JFrame("Chess Board");
+    
+    FileReader fileReader = new FileReader();
+    DataToArray dataToArray = new DataToArray();
 
     Timer tick = new Timer(40, this);
 
@@ -26,10 +32,19 @@ public class FramePanel extends JFrame implements ActionListener{
 
     JPanel boardPanel;
 
-    public FramePanel(char[][] buttonArray){
+    public FramePanel(){
+
+        String name = "Basic Start";
+
+        fileReader.readFile(name);
+
+        dataToArray.inputing(fileReader.getData());
+
         panelForButtonArray = new PanelForButtonArray(this);
-        this.buttonArray = buttonArray;
+        this.buttonArray = dataToArray.returnChessArray();
         tick.start();
+
+        SetPanelUp();
     }
 
     public void SetPanelUp(){
@@ -85,11 +100,28 @@ public class FramePanel extends JFrame implements ActionListener{
     }
 
     private void actionLogic(ActionEvent e){
+
         if(topMenu.checkSwitchSides()){
             panelForButtonArray.flipBoard();
             topMenu.switchSidesOff();
        }
        
+       if(topMenu.checkSelectFile()){
+            SelectFile selectFile = new SelectFile();
+            selectFile.setUpForInput();
+
+            while (selectFile.getText().equals("")) {
+                System.out.println("looping rn");
+            }
+
+            fileReader.readFile(selectFile.getText());  
+
+            dataToArray.inputing(fileReader.getData());                                   
+            
+            panelForButtonArray.setButtonArray(dataToArray.returnChessArray());
+            panelForButtonArray.loadBoard();
+       }
+
        boardPanel.repaint();
     }
 

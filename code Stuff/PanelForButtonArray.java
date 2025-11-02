@@ -37,7 +37,6 @@ public class PanelForButtonArray implements ActionListener{
         for (int x = 0; x < 8; x ++){
             for (int y = 0; y < 8; y ++){
                 buttonArray[x][y] = new JButton();
-                buttonArray[x][y].setText(""+chessBoardState[y][x]);
                 
                 buttonArray[x][y].setFont(new Font("Arial", Font.PLAIN, 80));
 
@@ -58,6 +57,8 @@ public class PanelForButtonArray implements ActionListener{
             }
             switchColours = !switchColours;
         }
+
+        loadBoard();
         
         return panel;
     }
@@ -107,7 +108,7 @@ public class PanelForButtonArray implements ActionListener{
 
         for (int x = 0; x < 8; x ++){
             for (int y = 0; y < 8; y ++){
-                buttonArray[x][y].setText(flipedButtonArray[y][x].getText());
+                buttonArray[x][y].setText(flipedButtonArray[x][y].getText());
             }
         }
         
@@ -136,6 +137,14 @@ public class PanelForButtonArray implements ActionListener{
         lastEvent = e;
         frame.setPosisitonsForArrows();
         movePieces(e);
+    }
+
+    public void loadBoard(){
+        for (int x = 0; x < 8; x ++){
+            for (int y = 0; y < 8; y ++){
+                buttonArray[x][y].setText(""+chessBoardState[y][x]);
+            }
+        }
     }
 
     public void setLetMove(boolean letMove){
