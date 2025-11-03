@@ -12,10 +12,12 @@ public class SelectFile implements ActionListener{
 
     JFrame textInput = new JFrame("Input File");
     JPanel textPanel = new JPanel();
-    JTextField textField = new JTextField(10);
+    JTextField textField = new JTextField(100);
     JButton submitButton = new JButton("Submit");
 
     String text = "";
+
+    Boolean sumbinited = false;
             
     public void setUpForInput(){
             
@@ -24,23 +26,28 @@ public class SelectFile implements ActionListener{
             textInput.setResizable(true);
             textInput.setLocationRelativeTo(null);
             textInput.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            textInput.setSize(500, 500);
+            textInput.setSize(500, 200);
             
-		    submitButton.setBackground(Color.BLUE);
+		    submitButton.setBackground(Color.WHITE);
             submitButton.addActionListener(this);
             
             textPanel.add(submitButton);
             textPanel.add(textField);
-
             textInput.add(textPanel);
     }
 
     public String getText(){
+        textField.setText(text);
         return text;
+    }
+
+    public Boolean ifSubmited(){
+        return sumbinited;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         text = textField.getText();
+        sumbinited = true;
     }
 }

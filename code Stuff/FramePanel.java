@@ -107,10 +107,11 @@ public class FramePanel extends JFrame implements ActionListener{
        }
        
        if(topMenu.checkSelectFile()){
+            topMenu.selectFileOff();
             SelectFile selectFile = new SelectFile();
             selectFile.setUpForInput();
 
-            while (selectFile.getText().equals("")) {
+            while (!selectFile.ifSubmited()) {
                 System.out.println("looping rn");
             }
 
