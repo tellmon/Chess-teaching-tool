@@ -61,7 +61,6 @@ public class FramePanel extends JFrame implements ActionListener{
         board.setSize(width, height);
         board.setVisible(true);
         board.isAlwaysOnTop();
-        
 
         // creates the layaed panel
         JLayeredPane layeredPane = new JLayeredPane();
@@ -103,6 +102,7 @@ public class FramePanel extends JFrame implements ActionListener{
 
         if(topMenu.checkSwitchSides()){
             panelForButtonArray.flipBoard();
+            sidePartsOfBoard.flipNumbersAndLetters();
             topMenu.switchSidesOff();
        }
        
