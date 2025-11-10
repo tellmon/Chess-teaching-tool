@@ -24,6 +24,8 @@ public class DataToArray {
         int xAxis = 0;
         boolean skipRest = false;
 
+        positonData = "";
+
         for(int i = 0; i < data.length(); i ++){
 
             if(data.charAt(i) == ' '){
@@ -75,9 +77,5 @@ public class DataToArray {
         }
 
         return output;
-    }
-
-    public void reset(){
-        positonData = "";
     }
 }

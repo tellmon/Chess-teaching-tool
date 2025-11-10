@@ -1,53 +1,76 @@
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class SelectFile implements ActionListener{
     // create a small text panel to enter the name of the file
+    // use jfilepicker
+
+    JFileChooser fileChoiser = new JFileChooser();
 
     JFrame textInput = new JFrame("Input File");
     JPanel textPanel = new JPanel();
-    JTextField textField = new JTextField(100);
-    JButton submitButton = new JButton("Submit");
 
     String text = "";
 
-    Boolean sumbinited = false;
+    boolean submited = false;
+    boolean setUpDone = false;
             
-    public void setUpForInput(){
-            
-            textInput.setAlwaysOnTop(true);
-            textInput.setVisible(true);
-            textInput.setResizable(true);
-            textInput.setLocationRelativeTo(null);
-            textInput.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            textInput.setSize(500, 200);
-            
-		    submitButton.setBackground(Color.WHITE);
-            submitButton.addActionListener(this);
-            
-            textPanel.add(submitButton);
-            textPanel.add(textField);
-            textInput.add(textPanel);
+    public void setUpForInput(){    
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+        fileChoiser.setFileFilter(filter);
+        
+        textInput.setAlwaysOnTop(true);
+        textInput.setVisible(true);
+        textInput.setResizable(true);
+        textInput.setLocationRelativeTo(null);
+        textInput.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        textInput.setSize(700, 400);
+
+        fileChoiser.addActionListener(this);
+
+        textPanel.add(fileChoiser);
+        textInput.add(textPanel);
+        setUpDone = true;
     }
 
     public String getText(){
-        textField.setText(text);
         return text;
     }
 
     public Boolean ifSubmited(){
-        return sumbinited;
+        return submited;
+    }
+
+    public boolean getSetUpDone(){
+        return setUpDone;
+    }
+
+    public void reset(){
+        setUpDone = false;
+        submited = false;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        text = textField.getText();
-        sumbinited = true;
+        // just get the file name to input
+
+        int returnVal = fileChoiser.showSaveDialog(null);
+
+        if (returnVal != JFileChooser.APPROVE_OPTION){
+            submited = false;
+        }
+
+        else{
+            submited = true;
+
+            text = fileChoiser.getSelectedFile().getPath();
+        }
+        
+        
     }
 }

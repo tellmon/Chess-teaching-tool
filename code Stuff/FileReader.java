@@ -7,9 +7,11 @@ public class FileReader {
     static String data = "";
 
     public void readFile(String name){
-        File file = new File(name + ".txt");
+        File file = new File(name);
 
         String fileInString = "";
+
+        data = "";
 
         // try-with-resources: Scanner will be closed automatically
         try (Scanner myReader = new Scanner(file)) {
@@ -28,7 +30,6 @@ public class FileReader {
     }
 
     private void dataSpliter(String fileInString){
-        Boolean dataNow = false;
 
         for (int i = 0; i < fileInString.length(); i++){
 
