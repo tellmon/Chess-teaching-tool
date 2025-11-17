@@ -17,6 +17,7 @@ public class TopMenu implements ActionListener{
     boolean arrowModeOn = false;
     boolean runSwitchSides = false;
     boolean selectFileCheck = false;
+    boolean saveFileChecker = false;
 
     public JPanel topMenuMaker(){
 
@@ -30,6 +31,7 @@ public class TopMenu implements ActionListener{
 
         saveFile = new JButton("Save State");
         saveFile.setBackground(Color.white);
+        saveFile.addActionListener(this);
         saveFile.setFont(new Font("Arial", Font.PLAIN, 80));
         panel.add(saveFile);
 
@@ -60,7 +62,7 @@ public class TopMenu implements ActionListener{
         }
 
         else if(e.getSource() == saveFile){
-            System.out.println("save file");
+            saveFileChecker = true;
 
         }
 
@@ -93,6 +95,14 @@ public class TopMenu implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         actionDoer(e);
+    }
+
+    public void turnOffSaveFileChecker(){
+        saveFileChecker = false;
+    }
+
+    public boolean checkSaveFileChecker(){
+        return saveFileChecker;
     }
 
     public boolean checkSelectFile(){

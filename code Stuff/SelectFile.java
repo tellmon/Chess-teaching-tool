@@ -10,7 +10,7 @@ public class SelectFile implements ActionListener{
     // create a small text panel to enter the name of the file
     // use jfilepicker
 
-    JFileChooser fileChoiser = new JFileChooser();
+    JFileChooser fileChooser = new JFileChooser();
 
     JFrame textInput = new JFrame("Input File");
     JPanel textPanel = new JPanel();
@@ -22,7 +22,7 @@ public class SelectFile implements ActionListener{
             
     public void setUpForInput(){    
         FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
-        fileChoiser.setFileFilter(filter);
+        fileChooser.setFileFilter(filter);
         
         textInput.setAlwaysOnTop(true);
         textInput.setVisible(true);
@@ -31,9 +31,9 @@ public class SelectFile implements ActionListener{
         textInput.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         textInput.setSize(700, 400);
 
-        fileChoiser.addActionListener(this);
+        fileChooser.addActionListener(this);
 
-        textPanel.add(fileChoiser);
+        textPanel.add(fileChooser);
         textInput.add(textPanel);
         setUpDone = true;
     }
@@ -59,7 +59,7 @@ public class SelectFile implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         // just get the file name to input
 
-        int returnVal = fileChoiser.showSaveDialog(null);
+        int returnVal = fileChooser.showSaveDialog(null);
 
         if (returnVal != JFileChooser.APPROVE_OPTION){
             submited = false;
@@ -68,7 +68,7 @@ public class SelectFile implements ActionListener{
         else{
             submited = true;
 
-            text = fileChoiser.getSelectedFile().getPath();
+            text = fileChooser.getSelectedFile().getPath();
         }
         
         

@@ -14,6 +14,9 @@ public class FramePanel extends JFrame implements ActionListener{
     int width = 0;
     int height = 0;
 
+    String dataOfBoardInNFS;
+    String fileNameToSaveAs;
+
     PanelForButtonArray panelForButtonArray;
     TopMenu topMenu = new TopMenu();
     SidePartsOfBoard sidePartsOfBoard = new SidePartsOfBoard();
@@ -21,9 +24,10 @@ public class FramePanel extends JFrame implements ActionListener{
     JFrame board = new JFrame("Chess Board");
 
     SelectFile selectFile = new SelectFile();
-    
+    SaveBoardState saveBoardState = new SaveBoardState();
     FileReader fileReader = new FileReader();
     DataToArray dataToArray = new DataToArray();
+    FileMaker fileMaker = new FileMaker();
 
     Timer tick = new Timer(40, this);
 
@@ -104,6 +108,27 @@ public class FramePanel extends JFrame implements ActionListener{
             sidePartsOfBoard.flipNumbersAndLetters();
             topMenu.switchSidesOff();
        }
+
+       if (topMenu.saveFileChecker){
+
+            if(!saveBoardState.getSetUpDone()){
+                saveBoardState.setUpForInput();
+            }
+            
+
+            if (saveBoardState.ifSubmited()) {
+                dataOfBoardInNFS = saveBoardState.converToString(panelForButtonArray.getBoardState());
+                
+                fileNameToSaveAs = saveBoardState.getName();
+
+                fileMaker.dataToSave(fileNameToSaveAs, dataOfBoardInNFS);
+
+                topMenu.turnOffSaveFileChecker();
+                selectFile.reset();
+            } 
+                
+                
+            }
        
        if(topMenu.checkSelectFile()){
             
