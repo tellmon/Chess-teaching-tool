@@ -22,15 +22,6 @@ public class SaveBoardState implements ActionListener{
 
 
     public void setUpForInput(){
-        
-        textInput.setAlwaysOnTop(true);
-        textInput.setVisible(true);
-        textInput.setResizable(true);
-        textInput.setLocationRelativeTo(null);
-        textInput.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        textInput.setSize(700, 400);
-        textPanel.add(fileChooser);
-        textInput.add(textPanel);
 
         setUpDone = true;
         fileChooser.addActionListener(this);
@@ -77,17 +68,11 @@ public class SaveBoardState implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int returnVal = fileChooser.showSaveDialog(fileChooser);
-
-        if (returnVal != JFileChooser.APPROVE_OPTION){
-            submited = false;
-        }
-
-        else{
-            submited = true;
-
-            text = fileChooser.getSelectedFile().getPath();
-        }    
+    
+        submited = true;
+        
+        text = fileChooser.getSelectedFile().getPath();
+         
     }
 
     public Boolean ifSubmited(){
