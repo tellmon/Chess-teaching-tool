@@ -113,10 +113,13 @@ public class FramePanel extends JFrame implements ActionListener{
 
             if(!saveBoardState.getSetUpDone()){
                 saveBoardState.setUpForInput();
+                
             }
             
+           
 
             if (saveBoardState.ifSubmited()) {
+                
                 dataOfBoardInNFS = saveBoardState.converToString(panelForButtonArray.getBoardState());
                 
                 fileNameToSaveAs = saveBoardState.getName();
@@ -124,7 +127,7 @@ public class FramePanel extends JFrame implements ActionListener{
                 fileMaker.dataToSave(fileNameToSaveAs, dataOfBoardInNFS);
 
                 topMenu.turnOffSaveFileChecker();
-                selectFile.reset();
+                saveBoardState.reset();
             } 
                 
                 

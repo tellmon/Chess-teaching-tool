@@ -21,7 +21,7 @@ public class FileMaker {
 
     private boolean createFile(String name){ // if true its made else its already exists
         try {
-            File myObj = new File(name); // Create File object
+            File myObj = new File(name+".txt"); // Create File object
             
             if (myObj.createNewFile()) {           // Try to create the file
                 return true; // done

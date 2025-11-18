@@ -1,15 +1,11 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class SaveBoardState implements ActionListener{
 
-    
     JFileChooser fileChooser = new JFileChooser();
 
     JFrame textInput = new JFrame("save File");
@@ -26,8 +22,6 @@ public class SaveBoardState implements ActionListener{
 
 
     public void setUpForInput(){
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
-        fileChooser.setFileFilter(filter);
         
         textInput.setAlwaysOnTop(true);
         textInput.setVisible(true);
@@ -35,12 +29,13 @@ public class SaveBoardState implements ActionListener{
         textInput.setLocationRelativeTo(null);
         textInput.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         textInput.setSize(700, 400);
-
-        fileChooser.addActionListener(this);
-
         textPanel.add(fileChooser);
         textInput.add(textPanel);
+
         setUpDone = true;
+        fileChooser.addActionListener(this);
+
+        fileChooser.showSaveDialog(fileChooser);
     }
 
     public String converToString(char[][] boardState) {
@@ -61,8 +56,7 @@ public class SaveBoardState implements ActionListener{
                     positonData += boardState[x][y];
 
                     count = 0;
-                }
-                
+                }   
             }
 
             if(count != 0){
@@ -77,7 +71,6 @@ public class SaveBoardState implements ActionListener{
     }
 
     public String getName() {
-         System.out.println("daved4.0");
         return text;
         
     }
@@ -85,7 +78,6 @@ public class SaveBoardState implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         int returnVal = fileChooser.showSaveDialog(fileChooser);
-        System.out.println("daved3.0");
 
         if (returnVal != JFileChooser.APPROVE_OPTION){
             submited = false;
@@ -94,8 +86,7 @@ public class SaveBoardState implements ActionListener{
         else{
             submited = true;
 
-            text = fileChooser.getSelectedFile().getName();
-            System.out.println("daved2.0");
+            text = fileChooser.getSelectedFile().getPath();
         }    
     }
 
