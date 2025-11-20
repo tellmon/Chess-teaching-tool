@@ -59,17 +59,17 @@ public class SelectFile implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         // just get the file name to input
 
-        int returnVal = fileChooser.showSaveDialog(null);
+        // int returnVal = fileChooser.showSaveDialog(null);
 
-        if (returnVal != JFileChooser.APPROVE_OPTION){
-            submited = false;
-        }
+        // if (returnVal != JFileChooser.APPROVE_OPTION){
+        //     submited = false;
+        // }
 
-        else{
+        // else{
             submited = true;
 
             text = fileChooser.getSelectedFile().getPath();
-        }
+        // }
         
         
     }

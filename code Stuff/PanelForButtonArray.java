@@ -19,6 +19,8 @@ public class PanelForButtonArray implements ActionListener{
     char[][] chessBoardState = new char[8][8];
     JButton[][] buttonArray = new JButton[8][8];
 
+    JButton lastButtonPressed = new JButton();
+
     ActionEvent lastEvent;
 
     private FramePanel frame;
@@ -63,6 +65,16 @@ public class PanelForButtonArray implements ActionListener{
         return panel;
     }
 
+    private void lastButtonPresed(ActionEvent e){
+        for (int x = 0; x < 8; x ++){
+           for (int y = 0; y < 8; y ++){
+                if (e.getSource() == buttonArray[x][y]){
+                    lastButtonPressed = buttonArray[x][y];
+                }
+            }
+        }
+    }
+
     private void movePieces(ActionEvent e){
         if(letMove){
             for (int x = 0; x < 8; x ++){
@@ -85,7 +97,7 @@ public class PanelForButtonArray implements ActionListener{
                     }
                 }
             }
-        }   
+        }
     }
 
     public void flipBoard(){
@@ -137,6 +149,7 @@ public class PanelForButtonArray implements ActionListener{
         lastEvent = e;
         frame.setPosisitonsForArrows();
         movePieces(e);
+        lastButtonPresed(e);
     }
 
     public void loadBoard(){
@@ -161,6 +174,10 @@ public class PanelForButtonArray implements ActionListener{
 
     public JButton[][] getButtonArray(){
         return buttonArray;
+    }
+
+    public JButton getLastButton(){
+        return lastButtonPressed;
     }
 
     public char[][] getBoardState(){

@@ -28,6 +28,7 @@ public class FramePanel extends JFrame implements ActionListener{
     FileReader fileReader = new FileReader();
     DataToArray dataToArray = new DataToArray();
     FileMaker fileMaker = new FileMaker();
+    SelectPiece selectPiece = new SelectPiece();
 
     Timer tick = new Timer(40, this);
 
@@ -37,7 +38,7 @@ public class FramePanel extends JFrame implements ActionListener{
 
     public FramePanel(){
 
-        String name = "Basic Start.txt";
+        String name = "Blank.txt";
 
         fileReader.readFile(name);
 
@@ -103,6 +104,24 @@ public class FramePanel extends JFrame implements ActionListener{
 
     private void actionLogic(ActionEvent e){
 
+        if(topMenu.getSelectPiece){
+
+            panelForButtonArray.getLastButton().setText(selectPiece.getName());
+        
+             if(!selectPiece.getSetUp()){
+                selectPiece.setUpPanel();        
+             }
+
+            if (selectPiece.getDone()){
+                topMenu.turnOffselectPiece();
+                selectPiece.hidePanel();
+            }
+
+            else{
+                selectPiece.showPanel();
+            }
+        }
+
         if(topMenu.checkSwitchSides()){
             panelForButtonArray.flipBoard();
             sidePartsOfBoard.flipNumbersAndLetters();
@@ -113,7 +132,6 @@ public class FramePanel extends JFrame implements ActionListener{
 
             if(!saveBoardState.getSetUpDone()){
                 saveBoardState.setUpForInput();
-                
             }
             
            
@@ -128,10 +146,9 @@ public class FramePanel extends JFrame implements ActionListener{
 
                 topMenu.turnOffSaveFileChecker();
                 saveBoardState.reset();
-            } 
-                
-                
             }
+                        
+        }
        
        if(topMenu.checkSelectFile()){
             

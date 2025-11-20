@@ -18,6 +18,7 @@ public class TopMenu implements ActionListener{
     boolean runSwitchSides = false;
     boolean selectFileCheck = false;
     boolean saveFileChecker = false;
+    boolean getSelectPiece = false;
 
     public JPanel topMenuMaker(){
 
@@ -38,6 +39,7 @@ public class TopMenu implements ActionListener{
         selectPiece = new JButton("Pieces");
         selectPiece.setBackground(Color.white);
         selectPiece.setFont(new Font("Arial", Font.PLAIN, 80));
+        selectPiece.addActionListener(this);
         panel.add(selectPiece);
 
         switchSides = new JButton("Switch Sides");
@@ -63,12 +65,10 @@ public class TopMenu implements ActionListener{
 
         else if(e.getSource() == saveFile){
             saveFileChecker = true;
-
         }
 
         else if(e.getSource() == selectPiece){
-            System.out.println("select piece");
-
+            getSelectPiece = true;
         }
 
         else if(e.getSource() == switchSides){
@@ -93,12 +93,19 @@ public class TopMenu implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         actionDoer(e);
     }
 
     public void turnOffSaveFileChecker(){
         saveFileChecker = false;
+    }
+
+    public void turnOffselectPiece(){
+        getSelectPiece = false;
+    }
+
+    public boolean getSelectPiece(){
+        return getSelectPiece;
     }
 
     public boolean checkSaveFileChecker(){
@@ -124,4 +131,5 @@ public class TopMenu implements ActionListener{
     public boolean checkArrowMode(){
         return arrowModeOn;
     }
+
 }
