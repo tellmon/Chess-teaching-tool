@@ -6,8 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class PanelForButtonArray implements ActionListener{
 
@@ -23,9 +25,13 @@ public class PanelForButtonArray implements ActionListener{
 
     ActionEvent lastEvent;
 
+    Timer tick = new Timer(40, this);
+
     private FramePanel frame;
 
     public PanelForButtonArray(FramePanel frame) {
+        tick.start();
+
         this.frame = frame;
     }
 
@@ -75,6 +81,78 @@ public class PanelForButtonArray implements ActionListener{
         }
     }
 
+    private void setIcons(){
+
+        String text = "";
+
+        for (int x = 0; x < 8; x ++){
+            for (int y = 0; y < 8; y ++){
+
+                text = buttonArray[x][y].getText();
+
+                // run a swich case for this. 
+
+                switch(text){
+
+                    // white
+                    case "P":
+                        buttonArray[x][y].setIcon(new ImageIcon("whitePawn.png"));
+                    break;
+
+                    case "R":
+                        buttonArray[x][y].setIcon(new ImageIcon("whiteRook.png"));
+                    break;
+
+                    case "N":
+                        buttonArray[x][y].setIcon(new ImageIcon("whiteKnight.png"));
+                    break;
+
+                    case "B":
+                        buttonArray[x][y].setIcon(new ImageIcon("whiteBishop.png"));
+                    break;
+
+                    case "Q":
+                        buttonArray[x][y].setIcon(new ImageIcon("whiteQueen.png"));
+                    break;
+
+                    case "K":
+                        buttonArray[x][y].setIcon(new ImageIcon("whiteKing.png"));
+                    break;
+
+
+                    // black 
+
+                    case "p":
+                        buttonArray[x][y].setIcon(new ImageIcon("blackPawn.png"));
+                    break;
+
+                    case "r":
+                        buttonArray[x][y].setIcon(new ImageIcon("blackRook.png"));
+                    break;
+
+                    case "n":
+                        buttonArray[x][y].setIcon(new ImageIcon("blackKnight.png"));
+                    break;
+
+                    case "b":
+                        buttonArray[x][y].setIcon(new ImageIcon("blackBishop.png"));
+                    break;
+
+                    case "q":
+                        buttonArray[x][y].setIcon(new ImageIcon("blackQueen.png"));
+                    break;
+
+                    case "k":
+                        buttonArray[x][y].setIcon(new ImageIcon("blackKing.png"));
+                    break;
+
+                    
+                }
+            
+            }
+        }
+    }
+
     private void movePieces(ActionEvent e){
         if(letMove){
             for (int x = 0; x < 8; x ++){
@@ -84,6 +162,7 @@ public class PanelForButtonArray implements ActionListener{
                         // needs to check if its a pice then pick it up if its not then dont but ever way let it place. 
                         if (movePiece && !buttonArray[x][y].getText().matches("") && !buttonArray[x][y].getText().matches(" ")){
                             Piece = buttonArray[x][y].getText();
+                            buttonArray[x][y].setIcon(null);
 
                             movePiece = false;
                             buttonArray[x][y].setText(" ");
@@ -150,11 +229,13 @@ public class PanelForButtonArray implements ActionListener{
         frame.setPosisitonsForArrows();
         movePieces(e);
         lastButtonPresed(e);
+        setIcons();
     }
 
     public void loadBoard(){
         for (int x = 0; x < 8; x ++){
             for (int y = 0; y < 8; y ++){
+                buttonArray[x][y].setIcon(null);
                 buttonArray[x][y].setText(""+chessBoardState[y][x]);
             }
         }

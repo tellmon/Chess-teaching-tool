@@ -5,9 +5,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class SelectPiece implements ActionListener{
 
@@ -24,7 +26,12 @@ public class SelectPiece implements ActionListener{
 
     String name = "";
 
+    Timer tick = new Timer(40, this);
+
     public void setUpPanel(){
+
+        tick.start();
+
         for (int x = 0; x < 2; x++){
             for (int y = 0; y < 6; y++){
                 buttonArray[x][y] = new JButton();
@@ -66,10 +73,12 @@ public class SelectPiece implements ActionListener{
         frame.setVisible(true);
         frame.setSize(1000, 500);
 
+        setIcons();
         setUp = true;
     }
 
     public void actionLogic(ActionEvent e){
+
         if(e.getSource() == doneButton){
             done = true;
         }
@@ -80,9 +89,7 @@ public class SelectPiece implements ActionListener{
                 for (int y = 0; y < 6; y++){
                     if(e.getSource() == buttonArray[x][y]){
                         name = buttonArray[x][y].getText();
-                        /**
-                         * i want the user to click on a square in the pieces then in the box. gets then return this. 
-                         */
+                        
                     }
                 }
             }
@@ -114,4 +121,76 @@ public class SelectPiece implements ActionListener{
     public boolean getSetUp(){
         return setUp;
     }   
+
+    private void setIcons(){
+
+        String text = "";
+
+        for (int x = 0; x < 2; x ++){
+            for (int y = 0; y < 6; y ++){
+
+                text = buttonArray[x][y].getText();
+
+                // run a swich case for this. 
+
+                switch(text){
+
+                    // white
+                    case "P":
+                        buttonArray[x][y].setIcon(new ImageIcon("whitePawn.png"));
+                    break;
+
+                    case "R":
+                        buttonArray[x][y].setIcon(new ImageIcon("whiteRook.png"));
+                    break;
+
+                    case "N":
+                        buttonArray[x][y].setIcon(new ImageIcon("whiteKnight.png"));
+                    break;
+
+                    case "B":
+                        buttonArray[x][y].setIcon(new ImageIcon("whiteBishop.png"));
+                    break;
+
+                    case "Q":
+                        buttonArray[x][y].setIcon(new ImageIcon("whiteQueen.png"));
+                    break;
+
+                    case "K":
+                        buttonArray[x][y].setIcon(new ImageIcon("whiteKing.png"));
+                    break;
+
+
+                    // black 
+
+                    case "p":
+                        buttonArray[x][y].setIcon(new ImageIcon("blackPawn.png"));
+                    break;
+
+                    case "r":
+                        buttonArray[x][y].setIcon(new ImageIcon("blackRook.png"));
+                    break;
+
+                    case "n":
+                        buttonArray[x][y].setIcon(new ImageIcon("blackKnight.png"));
+                    break;
+
+                    case "b":
+                        buttonArray[x][y].setIcon(new ImageIcon("blackBishop.png"));
+                    break;
+
+                    case "q":
+                        buttonArray[x][y].setIcon(new ImageIcon("blackQueen.png"));
+                    break;
+
+                    case "k":
+                        buttonArray[x][y].setIcon(new ImageIcon("blackKing.png"));
+                    break;
+
+                    
+                }
+            
+            }
+        }
+    }
 }
