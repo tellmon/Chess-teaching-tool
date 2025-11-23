@@ -38,7 +38,8 @@ public class SelectPiece implements ActionListener{
 
                 buttonArray[x][y].setFont(new Font("Arial", Font.PLAIN, 80));
                 buttonArray[x][y].addActionListener(this);
-                 buttonArray[x][y].setBackground(Color.WHITE);
+                buttonArray[x][y].setBackground(Color.WHITE);
+                buttonArray[x][y].setForeground(new Color(0, 0, 0, 0));
 
                 panel.add(buttonArray[x][y]);
             }
@@ -74,6 +75,7 @@ public class SelectPiece implements ActionListener{
         frame.setSize(1000, 500);
 
         setIcons();
+
         setUp = true;
     }
 

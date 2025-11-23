@@ -50,6 +50,8 @@ public class PanelForButtonArray implements ActionListener{
 
                 buttonArray[x][y].addActionListener(this);
 
+                buttonArray[x][y].setForeground(new Color(0, 0, 0, 0));
+
                 if(switchColours){
                     buttonArray[x][y].setBackground(Color.gray);
                 }
