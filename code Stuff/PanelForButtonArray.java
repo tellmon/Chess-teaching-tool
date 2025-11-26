@@ -21,11 +21,16 @@ public class PanelForButtonArray implements ActionListener{
     char[][] chessBoardState = new char[8][8];
     JButton[][] buttonArray = new JButton[8][8];
 
+    ValidMoveGetter validMoveGetter = new ValidMoveGetter();
+
     JButton lastButtonPressed = new JButton();
 
     ActionEvent lastEvent;
 
     Timer tick = new Timer(40, this);
+
+    int oldx = 0;
+    int oldy = 0;
 
     private FramePanel frame;
 
@@ -166,11 +171,16 @@ public class PanelForButtonArray implements ActionListener{
                             Piece = buttonArray[x][y].getText();
                             buttonArray[x][y].setIcon(null);
 
+                            oldx = x;
+                            oldy = y;
+
                             movePiece = false;
                             buttonArray[x][y].setText(" ");
                         }
                         
                         else if(!movePiece){
+
+                            validMoveGetter.checkIfValidMove(Piece, oldx, oldy, x, y);
                             buttonArray[x][y].setText(Piece);;
                             movePiece = true;
                         }
@@ -184,6 +194,13 @@ public class PanelForButtonArray implements ActionListener{
     public void flipBoard(){
 
         JButton[][] flipedButtonArray = new JButton[8][8];
+
+        for (int x = 0; x < 8; x ++){
+            for (int y = 0; y < 8; y ++){
+                buttonArray[x][y].setIcon(null);
+            }
+        }
+
 
         // fliping in x and y axis
         for (int x = 0; x < 8; x ++){
