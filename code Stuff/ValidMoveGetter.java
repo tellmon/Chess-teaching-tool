@@ -19,6 +19,9 @@ public class ValidMoveGetter {
         int xdiff = Math.abs(lastx) - Math.abs(newx);
         int ydiff = Math.abs(lasty) - Math.abs(newy);
 
+        xdiff = Math.abs(xdiff);
+        ydiff = Math.abs(ydiff);
+
         System.out.println("xDiff = "+xdiff);
         System.out.println("yDiff = "+ydiff);
         
@@ -27,7 +30,7 @@ public class ValidMoveGetter {
         switch(piece.toUpperCase()){
       
             case "P":
-                if((lastx == newx - 1 || lastx == newx + 1) && (lasty == newy - 1 || lasty == newy + 1)){
+                if((lastx == newx - 1 || lastx == newx + 1) || (lasty == newy - 1 || lasty == newy + 1)){
                     System.out.println("valid move");
                     return true;
                 }
