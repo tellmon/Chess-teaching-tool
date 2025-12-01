@@ -32,6 +32,9 @@ public class PanelForButtonArray implements ActionListener{
     int oldx = 0;
     int oldy = 0;
 
+    Color oldButtonColour = new Color(100, 100, 250);
+    int colourX, colourY;
+
     private FramePanel frame;
 
     public PanelForButtonArray(FramePanel frame) {
@@ -176,11 +179,24 @@ public class PanelForButtonArray implements ActionListener{
 
                             movePiece = false;
                             buttonArray[x][y].setText(" ");
+
+                            buttonArray[colourX][colourY].setBackground(oldButtonColour);
                         }
                         
                         else if(!movePiece){
 
-                            validMoveGetter.checkIfValidMove(Piece, oldx, oldy, x, y);
+                            oldButtonColour = buttonArray[x][y].getBackground();
+                            colourX = x;
+                            colourY = y;
+
+                            if(validMoveGetter.checkIfValidMove(Piece, oldx, oldy, x, y)){
+                                buttonArray[x][y].setBackground(Color.green);
+                            }
+
+                            else{
+                                buttonArray[x][y].setBackground(Color.red);
+                            }
+
                             buttonArray[x][y].setText(Piece);;
                             movePiece = true;
                         }
@@ -221,6 +237,8 @@ public class PanelForButtonArray implements ActionListener{
                 buttonArray[x][y].setText(flipedButtonArray[x][y].getText());
             }
         }
+
+        resetColourOfButton();
         
         /**    
         * logic:
@@ -258,6 +276,7 @@ public class PanelForButtonArray implements ActionListener{
                 buttonArray[x][y].setText(""+chessBoardState[y][x]);
             }
         }
+        resetColourOfButton();
     }
 
     public void setLetMove(boolean letMove){
@@ -288,5 +307,9 @@ public class PanelForButtonArray implements ActionListener{
         }
 
         return chessBoardState;
+    }
+
+    private void resetColourOfButton(){
+        lastButtonPressed.setBackground(oldButtonColour);
     }
 }

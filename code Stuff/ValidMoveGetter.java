@@ -12,8 +12,6 @@ public class ValidMoveGetter {
 
     public boolean checkIfValidMove(String piece, int lastx, int lasty, int newx, int newy){
         
-        // https://stackoverflow.com/questions/70178247/how-do-i-check-if-the-move-is-valid-or-not-made-by-knight-and-bishop
-
         // if displacment in x == displacement in y
 
         int xdiff = Math.abs(lastx) - Math.abs(newx);
@@ -22,19 +20,24 @@ public class ValidMoveGetter {
         xdiff = Math.abs(xdiff);
         ydiff = Math.abs(ydiff);
 
-        System.out.println("xDiff = "+xdiff);
-        System.out.println("yDiff = "+ydiff);
-        
-        // get the absualute value. the |x| thing in maths
-
         switch(piece.toUpperCase()){
       
             case "P":
-                if((lastx == newx - 1 || lastx == newx + 1) || (lasty == newy - 1 || lasty == newy + 1)){
-                    System.out.println("valid move");
-                    return true;
+                
+                if(lastx == 6 || lastx == 1){
+                    if(xdiff == 2 || xdiff == 1){
+                        System.out.println("valid move");
+                        return true;
+                    }
                 }
-                       
+                else{
+                    if(xdiff == 1){
+                        System.out.println("valid move");
+                        return true;
+                    }
+                }
+
+                                       
             break;
             
             case "R":
@@ -72,7 +75,7 @@ public class ValidMoveGetter {
             break;
 
             case "K":
-                if(xdiff == 1 || ydiff == 1){
+                if((xdiff == 1 && ydiff == 1) || (xdiff == 0 && ydiff == 1) || (xdiff == 1 && ydiff == 0)){
                     System.out.println("valid move");
                     return true;
                 }
