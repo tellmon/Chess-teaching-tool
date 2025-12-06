@@ -19,6 +19,7 @@ public class SelectFile implements ActionListener{
 
     boolean submited = false;
     boolean setUpDone = false;
+    boolean closed = false;
             
     public void setUpForInput(){    
         FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
@@ -36,6 +37,7 @@ public class SelectFile implements ActionListener{
         textPanel.add(fileChooser);
         textInput.add(textPanel);
         setUpDone = true;
+        closed = false;
     }
 
     public String getText(){
@@ -50,6 +52,10 @@ public class SelectFile implements ActionListener{
         return setUpDone;
     }
 
+    public boolean getClosed(){
+        return closed;
+    }
+
     public void reset(){
         setUpDone = false;
         submited = false;
@@ -57,20 +63,20 @@ public class SelectFile implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // just get the file name to input
+            
+        try {
+            if(fileChooser.getSelectedFile().getPath() == null){
+                closed = true;
+                System.out.println("daved");
+            }
 
-        // int returnVal = fileChooser.showSaveDialog(null);
+            else{
+                submited = true;
+                text = fileChooser.getSelectedFile().getPath();
+            }
 
-        // if (returnVal != JFileChooser.APPROVE_OPTION){
-        //     submited = false;
-        // }
-
-        // else{
-            submited = true;
-
-            text = fileChooser.getSelectedFile().getPath();
-        // }
-        
-        
+        } catch (Exception f) {
+                
+        }
     }
 }

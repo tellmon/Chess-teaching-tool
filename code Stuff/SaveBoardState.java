@@ -13,6 +13,7 @@ public class SaveBoardState implements ActionListener{
 
     boolean submited = false;
     boolean setUpDone = false;
+    boolean closed = false;
     
     String positonData = "";
    
@@ -23,14 +24,17 @@ public class SaveBoardState implements ActionListener{
 
     public void setUpForInput(){
 
+        closed = false;
         setUpDone = true;
+
         fileChooser.addActionListener(this);
 
         fileChooser.showSaveDialog(fileChooser);
     }
 
     public String converToString(char[][] boardState) {
-        
+        positonData = "";
+
         for (int y = 0; y < 8; y++ ){
             for(int x = 0; x < 8; x++){
                 
@@ -68,11 +72,23 @@ public class SaveBoardState implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    
-        submited = true;
+
         
-        text = fileChooser.getSelectedFile().getPath();
-         
+
+        try {
+            if(fileChooser.getSelectedFile().getPath() == null){
+                closed = true;
+                System.out.println("dave");
+            }
+
+            else{
+                submited = true;
+                text = fileChooser.getSelectedFile().getPath();
+            }
+            
+        } catch (Exception f) {
+                
+        }
     }
 
     public Boolean ifSubmited(){
@@ -86,5 +102,9 @@ public class SaveBoardState implements ActionListener{
     public void reset(){
         setUpDone = false;
         submited = false;
+    }
+
+    public boolean getClosed(){
+        return closed;
     }
 }

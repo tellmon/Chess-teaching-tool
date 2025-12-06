@@ -26,13 +26,11 @@ public class ValidMoveGetter {
                 
                 if(lastx == 6 || lastx == 1){
                     if(xdiff == 2 || xdiff == 1){
-                        System.out.println("valid move");
                         return true;
                     }
                 }
                 else{
                     if(xdiff == 1){
-                        System.out.println("valid move");
                         return true;
                     }
                 }
@@ -42,7 +40,6 @@ public class ValidMoveGetter {
             
             case "R":
                 if((lasty == newy && lastx != newx) || (lastx == newx && lasty != newy)){
-                    System.out.println("valid move");
                     return true;
                 }
             
@@ -51,7 +48,6 @@ public class ValidMoveGetter {
 
             case "N":
                 if((xdiff == 2 && ydiff == 1) || (xdiff == 1 && ydiff == 2)){
-                   System.out.println("valid move");
                    return true; 
                 }
                 
@@ -60,7 +56,6 @@ public class ValidMoveGetter {
             case "B":
                 
                 if(xdiff == ydiff){
-                    System.out.println("valid move");
                     return true;
                 }
                 
@@ -68,15 +63,13 @@ public class ValidMoveGetter {
 
             case "Q":
                 if((xdiff == ydiff) || (lasty == newy && lastx != newx) || (lastx == newx && lasty != newy)){
-                    System.out.println("valid move");
-                    return true;
+                   return true;
                 }
 
             break;
 
             case "K":
                 if((xdiff == 1 && ydiff == 1) || (xdiff == 0 && ydiff == 1) || (xdiff == 1 && ydiff == 0)){
-                    System.out.println("valid move");
                     return true;
                 }
                 
