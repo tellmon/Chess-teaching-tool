@@ -6,80 +6,86 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class SelectFile implements ActionListener{
-    // create a small text panel to enter the name of the file
-    // use jfilepicker
+public class SelectFile implements ActionListener {
 
-    JFileChooser fileChooser = new JFileChooser();
+    private final JFileChooser fileChooser = new JFileChooser();
+    private final JFrame textInput = new JFrame("Input File");
+    private final JPanel textPanel = new JPanel();
 
-    JFrame textInput = new JFrame("Input File");
-    JPanel textPanel = new JPanel();
+    private String text = "";
+    private boolean submitted = false;
+    private boolean setUpDone = false;
+    private boolean closed = false;
 
-    String text = "";
-
-    boolean submited = false;
-    boolean setUpDone = false;
-    boolean closed = false;
-            
-    public void setUpForInput(){    
+    public void setUpForInput() {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
         fileChooser.setFileFilter(filter);
-        
+
         textInput.setAlwaysOnTop(true);
-        textInput.setVisible(true);
         textInput.setResizable(true);
+        textInput.setSize(700, 400);
         textInput.setLocationRelativeTo(null);
         textInput.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        textInput.setSize(700, 400);
+
+        textInput.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                closed = true;
+            }
+        });
 
         fileChooser.addActionListener(this);
 
         textPanel.add(fileChooser);
         textInput.add(textPanel);
+
+        textInput.setVisible(true);
+
         setUpDone = true;
         closed = false;
     }
 
-    public String getText(){
+    public String getText() {
         return text;
     }
 
-    public Boolean ifSubmited(){
-        return submited;
+    public boolean isSubmitted() {
+        return submitted;
     }
 
-    public boolean getSetUpDone(){
+    public boolean isSetUpDone() {
         return setUpDone;
     }
 
-    public boolean getClosed(){
+    public boolean isClosed() {
         return closed;
     }
 
-    public void reset(){
+    public void reset() {
         setUpDone = false;
-        submited = false;
+        submitted = false;
+        closed = false;
+        text = "";
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(e.toString());  
-        
-       if(e.getActionCommand().equals("ApproveSelection")) {
-	        try {
-	                submited = true;
-	                text = fileChooser.getSelectedFile().getPath();
-	            }
-	
-	        catch (Exception f) {
-	                
-	        }
-       }
-       
-       else{
-    	   // || fileChooser.CANCEL_OPTION == options){
-               closed = true;
-               System.out.println("daved");
-       }
-    }  
+
+        String cmd = e.getActionCommand();
+
+        if (cmd.equals(JFileChooser.APPROVE_SELECTION)) {
+            // User clicked "Open"
+            submitted = true;
+            text = fileChooser.getSelectedFile().getAbsolutePath();
+            closed = false;
+            textInput.dispose();
+        }
+
+        else if (cmd.equals(JFileChooser.CANCEL_SELECTION)) {
+            // User clicked "Cancel"
+            submitted = false;
+            closed = true;
+            textInput.dispose();
+        }
+    }
 }

@@ -64,7 +64,7 @@ public class FramePanel extends JFrame implements ActionListener{
         board.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         board.setSize(width, height);
         board.setVisible(true);
-        board.isAlwaysOnTop();
+        
 
         // creates the layaed panel
         JLayeredPane layeredPane = new JLayeredPane();
@@ -130,53 +130,54 @@ public class FramePanel extends JFrame implements ActionListener{
             topMenu.switchSidesOff();
        }
 
-       if (topMenu.saveFileChecker){
+        if(topMenu.saveFileChecker){
+        	
+        	
 
-            if(saveBoardState.getClosed()){
-                topMenu.turnOffSaveFileChecker();
-                saveBoardState.reset();
-            }
-
-            if(!saveBoardState.getSetUpDone()){
+            if(!saveBoardState.isSetupDone()){
+                saveBoardState.reset(); // ensure clean state
                 saveBoardState.setUpForInput();
             }
 
-            if (saveBoardState.ifSubmited()) {
-                
-                dataOfBoardInNFS = saveBoardState.converToString(panelForButtonArray.getBoardState());
-                
+            if (saveBoardState.isSubmitted()) {
+                dataOfBoardInNFS = saveBoardState.convertToString(panelForButtonArray.getBoardState());
                 fileNameToSaveAs = saveBoardState.getName();
-
                 fileMaker.dataToSave(fileNameToSaveAs, dataOfBoardInNFS);
 
                 topMenu.turnOffSaveFileChecker();
                 saveBoardState.reset();
             }
-                        
+
+            if(saveBoardState.isClosed()){
+                topMenu.turnOffSaveFileChecker();
+                saveBoardState.reset();
+            }
         }
+
        
        if(topMenu.checkSelectFile()){
             
-            if(selectFile.getClosed()){
-                topMenu.selectFileOff();
-                selectFile.reset();
-            }
+    	    // START THE FILE PICKER ONCE
+    	    if(!selectFile.isSetUpDone()){
+    	        selectFile.setUpForInput();
+    	    }
 
-            if(!selectFile.getSetUpDone()){
-                selectFile.setUpForInput();
-            }
+    	    // USER PRESSED OPEN
+    	    if(selectFile.isSubmitted()){
+    	        fileReader.readFile(selectFile.getText());
+    	        dataToArray.inputing(fileReader.getData());
+    	        panelForButtonArray.setButtonArray(dataToArray.returnChessArray());
+    	        panelForButtonArray.loadBoard();
 
-            if (selectFile.ifSubmited()) {
-                fileReader.readFile(selectFile.getText());  
+    	        topMenu.selectFileOff();
+    	        selectFile.reset();
+    	    }
 
-                dataToArray.inputing(fileReader.getData());
-                
-                panelForButtonArray.setButtonArray(dataToArray.returnChessArray());
-                panelForButtonArray.loadBoard();
-
-                topMenu.selectFileOff();
-                selectFile.reset();
-            }  
+    	    // USER PRESSED CANCEL OR CLOSED WINDOW
+    	    if(selectFile.isClosed()){
+    	        topMenu.selectFileOff();
+    	        selectFile.reset();
+    	    }
        }
 
        boardPanel.repaint();

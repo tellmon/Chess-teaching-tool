@@ -1,110 +1,95 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-public class SaveBoardState implements ActionListener{
+public class SaveBoardState implements ActionListener {
 
-    JFileChooser fileChooser = new JFileChooser();
+    private final JFileChooser fileChooser = new JFileChooser();
 
-    JFrame textInput = new JFrame("save File");
-    JPanel textPanel = new JPanel();
+    private boolean submitted = false;
+    private boolean setupDone = false;
+    private boolean closed = false;
 
-    boolean submited = false;
-    boolean setUpDone = false;
-    boolean closed = false;
-    
-    String positonData = "";
-   
-    int count = 0;
+    private String positionData = "";
+    private String filePath = "";
 
-    String text = "";
-
-
-    public void setUpForInput(){
-
+    public void setUpForInput() {
+        // Reset flags
+        submitted = false;
         closed = false;
-        setUpDone = true;
 
-        fileChooser.addActionListener(this);
+        // Only add listener once
+        if (!setupDone) {
+            fileChooser.addActionListener(this);
+        }
 
-        fileChooser.showSaveDialog(fileChooser);
+        setupDone = true;
+
+        // Opens dialog (blocking call)
+        fileChooser.showSaveDialog(null);
     }
 
-    public String converToString(char[][] boardState) {
-        positonData = "";
+    public String convertToString(char[][] boardState) {
+        positionData = "";
+        int count = 0;
 
-        for (int y = 0; y < 8; y++ ){
-            for(int x = 0; x < 8; x++){
-                
-                if (boardState[x][y] == ' '){
-                    count += 1;
-                }
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 8; x++) {
 
-                else{
-
-                    if(count != 0){
-                        positonData += count;
-                    }
-
-                    positonData += boardState[x][y];
-
+                if (boardState[x][y] == ' ') {
+                    count++;
+                } else {
+                    if (count != 0) positionData += count;
+                    positionData += boardState[x][y];
                     count = 0;
-                }   
+                }
             }
 
-            if(count != 0){
-                positonData += count;
-            }
-
+            if (count != 0) positionData += count;
+            positionData += "/";
             count = 0;
-            positonData += '/';
-        }  
+        }
 
-        return positonData = positonData.substring(0, positonData.length() - 1);
+        return positionData.substring(0, positionData.length() - 1);
     }
 
     public String getName() {
-        return text;
-        
+        return filePath;
+    }
+
+    public boolean isSubmitted() {
+        return submitted;
+    }
+
+    public boolean isSetupDone() {
+        return setupDone;
+    }
+
+    public boolean isClosed() {
+        return closed;
+    }
+
+    public void reset() {
+        setupDone = false;
+        submitted = false;
+        closed = false;
+        filePath = "";
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        
+        String cmd = e.getActionCommand();
 
-        try {
-            if(fileChooser.getSelectedFile().getPath() == null ) { // || fileChooser.CANCEL_OPTION == options){
-                closed = true;
-                System.out.println("dave");
-            }
-
-            else{
-                submited = true;
-                text = fileChooser.getSelectedFile().getPath();
-            }
-            
-        } catch (Exception f) {
-                
+        if (cmd.equals(JFileChooser.APPROVE_SELECTION)) {
+            submitted = true;
+            closed = false;
+            filePath = fileChooser.getSelectedFile().getAbsolutePath();
+        } 
+        else if (cmd.equals(JFileChooser.CANCEL_SELECTION)) {
+            closed = true;
+            submitted = false;
         }
     }
 
-    public Boolean ifSubmited(){
-        return submited;
-    }
-
-    public boolean getSetUpDone(){
-        return setUpDone;
-    }
-
-    public void reset(){
-        setUpDone = false;
-        submited = false;
-    }
-
-    public boolean getClosed(){
-        return closed;
-    }
 }
