@@ -14,13 +14,19 @@ public class SidePartsOfBoard {
 
     String alphabet = "ABCDEFGH";
     
+    int textSize = 50;
+    
+    public SidePartsOfBoard(int x) {
+    	textSize = x;
+    }
+    
     public JPanel numbers(){
         
         for(int i = 0; i < 8; i++){
             numberArray[i] = new JLabel();
             numberArray[i].setText(""+(8-i));
             numberPanel.add(numberArray[i]);
-            numberArray[i].setFont(new Font("Arial", Font.PLAIN, 80));
+            numberArray[i].setFont(new Font("Arial", Font.PLAIN, textSize));
         }
 
         return numberPanel;
@@ -29,10 +35,10 @@ public class SidePartsOfBoard {
     public JPanel letter(){
         
         for(int i = 0; i < 8; i++){
-            letterArray[i] = new JLabel(); // 7 spaces
-            letterArray[i].setText("       "+alphabet.charAt(i));
+            letterArray[i] = new JLabel(); 
+            letterArray[i].setText("    "+alphabet.charAt(i));
             letterPanel.add(letterArray[i]);
-            letterArray[i].setFont(new Font("Arial", Font.PLAIN, 80));
+            letterArray[i].setFont(new Font("Arial", Font.PLAIN, textSize));
         }
 
         return letterPanel;

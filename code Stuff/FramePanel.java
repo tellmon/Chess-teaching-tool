@@ -18,8 +18,8 @@ public class FramePanel extends JFrame implements ActionListener{
     String fileNameToSaveAs;
 
     PanelForButtonArray panelForButtonArray;
-    TopMenu topMenu = new TopMenu();
-    SidePartsOfBoard sidePartsOfBoard = new SidePartsOfBoard();
+    TopMenu topMenu = new TopMenu(50); //text size
+    SidePartsOfBoard sidePartsOfBoard = new SidePartsOfBoard(50); //text size
     ArrowLogic arrowLogic = new ArrowLogic();
     JFrame board = new JFrame("Chess Board");
 
@@ -75,11 +75,13 @@ public class FramePanel extends JFrame implements ActionListener{
 
         layeredPane.setBounds(0, 0, width, height);
         layeredPane.setPreferredSize(new Dimension(width, height));
-        layeredPane.setSize(new Dimension(width, height - 250));
-        boardPanel.setSize(new Dimension(width, height - 250)); 
-        arrowLogic.setSize(new Dimension(width, height - 250));
+        
+        
+        layeredPane.setSize(new Dimension(width, height));
+        boardPanel.setSize(new Dimension(width -100,  height -200));  // mess with this values to get it to display
+        arrowLogic.setSize(new Dimension(width -100,  height -200));
 
-        // adds it all tp the board
+        // adds it all to the board
         board.add(layeredPane, BorderLayout.CENTER);
         board.add(topMenu.topMenuMaker(), BorderLayout.NORTH);
         board.add(sidePartsOfBoard.numbers(), BorderLayout.WEST);
@@ -107,10 +109,10 @@ public class FramePanel extends JFrame implements ActionListener{
         if(topMenu.getSelectPiece){
 
             panelForButtonArray.getLastButton().setText(selectPiece.getName());
-        
-             if(!selectPiece.getSetUp()){
-                selectPiece.setUpPanel();        
-             }
+           
+            if(!selectPiece.getSetUp()){
+               selectPiece.setUpPanel();        
+            }
 
             if (selectPiece.getDone()){
                 topMenu.turnOffselectPiece();

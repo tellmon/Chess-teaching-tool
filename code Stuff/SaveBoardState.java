@@ -76,7 +76,7 @@ public class SaveBoardState implements ActionListener{
         
 
         try {
-            if(fileChooser.getSelectedFile().getPath() == null){
+            if(fileChooser.getSelectedFile().getPath() == null ) { // || fileChooser.CANCEL_OPTION == options){
                 closed = true;
                 System.out.println("dave");
             }

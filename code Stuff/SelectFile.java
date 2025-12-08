@@ -63,20 +63,23 @@ public class SelectFile implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-            
-        try {
-            if(fileChooser.getSelectedFile().getPath() == null){
-                closed = true;
-                System.out.println("daved");
-            }
-
-            else{
-                submited = true;
-                text = fileChooser.getSelectedFile().getPath();
-            }
-
-        } catch (Exception f) {
-                
-        }
-    }
+        System.out.println(e.toString());  
+        
+       if(e.getActionCommand().equals("ApproveSelection")) {
+	        try {
+	                submited = true;
+	                text = fileChooser.getSelectedFile().getPath();
+	            }
+	
+	        catch (Exception f) {
+	                
+	        }
+       }
+       
+       else{
+    	   // || fileChooser.CANCEL_OPTION == options){
+               closed = true;
+               System.out.println("daved");
+       }
+    }  
 }

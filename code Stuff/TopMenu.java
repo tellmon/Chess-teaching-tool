@@ -19,7 +19,14 @@ public class TopMenu implements ActionListener{
     boolean selectFileCheck = false;
     boolean saveFileChecker = false;
     boolean getSelectPiece = false;
-
+    
+    int textSize = 50;
+    
+    public TopMenu(int x) {
+    	textSize = x;
+    	
+    }
+    
     public JPanel topMenuMaker(){
 
         JPanel panel = new JPanel();
@@ -27,31 +34,31 @@ public class TopMenu implements ActionListener{
         selectFile = new JButton("Select File");
         selectFile.setBackground(Color.white);
         selectFile.addActionListener(this);
-        selectFile.setFont(new Font("Arial", Font.PLAIN, 80));
+        selectFile.setFont(new Font("Arial", Font.PLAIN, textSize));
         panel.add(selectFile);
 
         saveFile = new JButton("Save State");
         saveFile.setBackground(Color.white);
         saveFile.addActionListener(this);
-        saveFile.setFont(new Font("Arial", Font.PLAIN, 80));
+        saveFile.setFont(new Font("Arial", Font.PLAIN, textSize));
         panel.add(saveFile);
 
         selectPiece = new JButton("Pieces");
         selectPiece.setBackground(Color.white);
-        selectPiece.setFont(new Font("Arial", Font.PLAIN, 80));
+        selectPiece.setFont(new Font("Arial", Font.PLAIN, textSize));
         selectPiece.addActionListener(this);
         panel.add(selectPiece);
 
         switchSides = new JButton("Switch Sides");
         switchSides.setBackground(Color.white);
         switchSides.addActionListener(this);
-        switchSides.setFont(new Font("Arial", Font.PLAIN, 80));
+        switchSides.setFont(new Font("Arial", Font.PLAIN, textSize));
         panel.add(switchSides);
 
         arrowMode = new JButton("Arrow Mode");
         arrowMode.setBackground(Color.white);
         arrowMode.addActionListener(this);
-        arrowMode.setFont(new Font("Arial", Font.PLAIN, 80));
+        arrowMode.setFont(new Font("Arial", Font.PLAIN, textSize));
         panel.add(arrowMode);
 
         return panel;
