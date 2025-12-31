@@ -1,6 +1,7 @@
 import java.awt.Font;
 import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -32,17 +33,19 @@ public class SidePartsOfBoard {
         return numberPanel;
     }
 
-    public JPanel letter(){
-        
-        for(int i = 0; i < 8; i++){
-            letterArray[i] = new JLabel(); 
-            letterArray[i].setText("    "+alphabet.charAt(i));
-            letterPanel.add(letterArray[i]);
+    public JPanel letter() {
+
+        for (int i = 0; i < 8; i++) {
+            letterArray[i] = new JLabel(String.valueOf(alphabet.charAt(i)));
             letterArray[i].setFont(new Font("Arial", Font.PLAIN, textSize));
+            letterArray[i].setHorizontalAlignment(JLabel.CENTER);
+            letterArray[i].setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+            letterPanel.add(letterArray[i]);
         }
 
         return letterPanel;
     }
+
 
     public void flipNumbersAndLetters(){
 
@@ -53,7 +56,7 @@ public class SidePartsOfBoard {
             }
             
             for(int i = 0; i < 8; i++){
-                letterArray[i].setText("       "+alphabet.charAt(i));
+                letterArray[i].setText(""+alphabet.charAt(i));
             }
         }
 
@@ -64,7 +67,7 @@ public class SidePartsOfBoard {
             }
 
             for(int i = 0; i < 8; i++){
-                letterArray[i].setText("       "+alphabet.charAt(7-i));
+                letterArray[i].setText(""+alphabet.charAt(7-i));
             }
         }
     }

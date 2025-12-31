@@ -78,14 +78,23 @@ public class FramePanel extends JFrame implements ActionListener{
         
         
         layeredPane.setSize(new Dimension(width, height));
-        boardPanel.setSize(new Dimension(width -100,  height -200));  // mess with this values to get it to display
-        arrowLogic.setSize(new Dimension(width -100,  height -200));
+        //width = 1504
+        //hight = 1003
+        
+        // 1003 - 200 = 1003 * x
+        // (1003 - 200) / 1003 = x
+        // 0.80 = x
+        
+        boardPanel.setSize(new Dimension(width,  (int) (height * 0.8))); 
+        arrowLogic.setSize(new Dimension(width,  (int) (height * 0.8)));
 
         // adds it all to the board
         board.add(layeredPane, BorderLayout.CENTER);
         board.add(topMenu.topMenuMaker(), BorderLayout.NORTH);
         board.add(sidePartsOfBoard.numbers(), BorderLayout.WEST);
         board.add(sidePartsOfBoard.letter(), BorderLayout.SOUTH);
+        
+        
     }
 
     public void setPosisitonsForArrows(){ 
