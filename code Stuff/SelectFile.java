@@ -12,10 +12,11 @@ public class SelectFile implements ActionListener {
     private final JFrame textInput = new JFrame("Input File");
     private final JPanel textPanel = new JPanel();
 
-    private String text = "";
     private boolean submitted = false;
     private boolean setUpDone = false;
     private boolean closed = false;
+    
+    private String text = "";
 
     public void setUpForInput() {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
@@ -74,7 +75,6 @@ public class SelectFile implements ActionListener {
         String cmd = e.getActionCommand();
 
         if (cmd.equals(JFileChooser.APPROVE_SELECTION)) {
-            // User clicked "Open"
             submitted = true;
             text = fileChooser.getSelectedFile().getAbsolutePath();
             closed = false;
@@ -82,7 +82,6 @@ public class SelectFile implements ActionListener {
         }
 
         else if (cmd.equals(JFileChooser.CANCEL_SELECTION)) {
-            // User clicked "Cancel"
             submitted = false;
             closed = true;
             textInput.dispose();

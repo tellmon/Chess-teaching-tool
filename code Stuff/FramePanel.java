@@ -141,10 +141,7 @@ public class FramePanel extends JFrame implements ActionListener{
 
         if(topMenu.saveFileChecker){
         	
-        	
-
-            if(!saveBoardState.isSetupDone()){
-                saveBoardState.reset(); // ensure clean state
+        	if(!saveBoardState.isSetupDone()){
                 saveBoardState.setUpForInput();
             }
 
@@ -166,12 +163,10 @@ public class FramePanel extends JFrame implements ActionListener{
        
        if(topMenu.checkSelectFile()){
             
-    	    // START THE FILE PICKER ONCE
     	    if(!selectFile.isSetUpDone()){
     	        selectFile.setUpForInput();
     	    }
 
-    	    // USER PRESSED OPEN
     	    if(selectFile.isSubmitted()){
     	        fileReader.readFile(selectFile.getText());
     	        dataToArray.inputing(fileReader.getData());
@@ -182,7 +177,6 @@ public class FramePanel extends JFrame implements ActionListener{
     	        selectFile.reset();
     	    }
 
-    	    // USER PRESSED CANCEL OR CLOSED WINDOW
     	    if(selectFile.isClosed()){
     	        topMenu.selectFileOff();
     	        selectFile.reset();

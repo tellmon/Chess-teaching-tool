@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 
 public class SaveBoardState implements ActionListener {
 
@@ -12,21 +13,25 @@ public class SaveBoardState implements ActionListener {
 
     private String positionData = "";
     private String filePath = "";
-
+    
+    JFrame frame = new JFrame();
+    
     public void setUpForInput() {
-        // Reset flags
         submitted = false;
         closed = false;
-
-        // Only add listener once
-        if (!setupDone) {
-            fileChooser.addActionListener(this);
-        }
-
         setupDone = true;
 
-        // Opens dialog (blocking call)
-        fileChooser.showSaveDialog(null);
+        fileChooser.removeActionListener(this); // avoid duplicates
+        fileChooser.addActionListener(this);
+
+        int result = fileChooser.showSaveDialog(null);
+
+        // This catches X button
+        if (result != JFileChooser.APPROVE_OPTION && !submitted) {
+            closed = true;
+        }
+
+        System.out.println("chooser finished");
     }
 
     public String convertToString(char[][] boardState) {
@@ -80,13 +85,16 @@ public class SaveBoardState implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         String cmd = e.getActionCommand();
-
+        System.out.println("should close here");
+        
         if (cmd.equals(JFileChooser.APPROVE_SELECTION)) {
             submitted = true;
+            System.out.println("aproved");
             closed = false;
             filePath = fileChooser.getSelectedFile().getAbsolutePath();
         } 
         else if (cmd.equals(JFileChooser.CANCEL_SELECTION)) {
+        	System.out.println("closed");
             closed = true;
             submitted = false;
         }
