@@ -17,8 +17,8 @@ public class ArrowLogic extends JPanel{
     int xPosSecond = 0;
     int yPosSecond = 0;
 
-    int hightSecond = 0;
-    int widthSecond = 0;
+    int hight = 0;
+    int width = 0;
 
     boolean gotBothPos = false;
 
@@ -39,8 +39,8 @@ public class ArrowLogic extends JPanel{
             double yDiff = yPosSecond - yPosFirst;
             double angle = Math.atan2(yDiff, xDiff);
 
-            int arrowLength = widthSecond / 4;
-            int arrowWidth = hightSecond / 4;
+            int arrowLength = width / 4;
+            int arrowWidth = hight / 4;
 
             int[] xForTriangle = {xPosSecond, xPosSecond - arrowLength, xPosSecond - arrowLength };
             int[] yForTriangle = {yPosSecond, yPosSecond - arrowWidth, yPosSecond + arrowWidth};
@@ -74,8 +74,8 @@ public class ArrowLogic extends JPanel{
                     if (e.getSource() == buttonArray[x][y]){
                         xPosSecond = buttonArray[x][y].getX() + buttonArray[x][y].getWidth() / 2;
                         yPosSecond = buttonArray[x][y].getY() + buttonArray[x][y].getHeight() / 2;
-                        hightSecond = buttonArray[x][y].getHeight() ;
-                        widthSecond = buttonArray[x][y].getWidth() ;
+                        hight = buttonArray[x][y].getHeight() ;
+                        width = buttonArray[x][y].getWidth() ;
                         gotBothPos = true;
                     }
                 }

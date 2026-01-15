@@ -1,35 +1,23 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class FramePanel extends JFrame implements ActionListener{
 
-    int width = 0;
-    int height = 0;
-
     String dataOfBoardInNFS;
     String fileNameToSaveAs;
 
-    PanelForButtonArray panelForButtonArray;
-    TopMenu topMenu = new TopMenu(50); //text size
-    SidePartsOfBoard sidePartsOfBoard = new SidePartsOfBoard(50); //text size
-    ArrowLogic arrowLogic = new ArrowLogic();
     JFrame board = new JFrame("Chess Board");
-
+    
+    SelectPiece selectPiece = new SelectPiece();
+    FileHandler fileHandler = new FileHandler();
     SelectFile selectFile = new SelectFile();
     SaveBoardState saveBoardState = new SaveBoardState();
-    FileReader fileReader = new FileReader();
-    DataToArray dataToArray = new DataToArray();
-    FileMaker fileMaker = new FileMaker();
-    SelectPiece selectPiece = new SelectPiece();
-
+    BoardHolder boardHolder = new BoardHolder(this);       
+    
     Timer tick = new Timer(40, this);
 
     char[][] buttonArray;
@@ -39,92 +27,49 @@ public class FramePanel extends JFrame implements ActionListener{
     public FramePanel(){
 
         String name = "Blank.txt";
-
-        fileReader.readFile(name);
-
-        dataToArray.inputing(fileReader.getData());
-
-        panelForButtonArray = new PanelForButtonArray(this);
-        this.buttonArray = dataToArray.returnChessArray();
+        
+        fileHandler.readFile(name);
+    	
+        this.buttonArray = fileHandler.returnChessArray();
         tick.start();
 
         SetPanelUp();
     }
 
     public void SetPanelUp(){
-        panelForButtonArray.setButtonArray(buttonArray);
-        boardPanel = panelForButtonArray.buttonArray();
-
-        // get it to be the same size as the screen
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        width = (int) screenSize.getWidth();
-        height = (int) screenSize.getHeight();
-
-        // sets up the board
-        board.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        board.setSize(width, height);
-        board.setVisible(true);
-        
-
-        // creates the layaed panel
-        JLayeredPane layeredPane = new JLayeredPane();
-
-        layeredPane.add(boardPanel, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(arrowLogic, JLayeredPane.DRAG_LAYER);
-        arrowLogic.setOpaque(false);
-
-        layeredPane.setBounds(0, 0, width, height);
-        layeredPane.setPreferredSize(new Dimension(width, height));
-        
-        
-        layeredPane.setSize(new Dimension(width, height));
-        //width = 1504
-        //hight = 1003
-        
-        // 1003 - 200 = 1003 * x
-        // (1003 - 200) / 1003 = x
-        // 0.80 = x
-        
-        boardPanel.setSize(new Dimension(width,  (int) (height * 0.8))); 
-        arrowLogic.setSize(new Dimension(width,  (int) (height * 0.8)));
-
-        // adds it all to the board
-        board.add(layeredPane, BorderLayout.CENTER);
-        board.add(topMenu.topMenuMaker(), BorderLayout.NORTH);
-        board.add(sidePartsOfBoard.numbers(), BorderLayout.WEST);
-        board.add(sidePartsOfBoard.letter(), BorderLayout.SOUTH);
-        
-        
-    }
+    	boardHolder.setButtonArray(buttonArray);
+                
+        board = boardHolder.returnBoard(board);
+        boardPanel = boardHolder.getBoardPanel();   
+   }
 
     public void setPosisitonsForArrows(){ 
-        boolean arrowMode = topMenu.checkArrowMode();
+        boolean arrowMode = boardHolder.checkArrowMode();
         
         if(arrowMode){
-            panelForButtonArray.setLetMove(false);
-            arrowLogic.getXAndYOfButtonInPixels(panelForButtonArray.getActionEvent(), panelForButtonArray.getButtonArray());
+        	boardHolder.setLetMove(false);
+        	boardHolder.arrowDrawing();
         }
 
         else{
-            arrowLogic.eraseArrows();
-            panelForButtonArray.setLetMove(true);
+        	boardHolder.erraseArrow();
+            boardHolder.setLetMove(true);
         }
 
-        boardPanel.repaint();
     }
 
     private void actionLogic(ActionEvent e){
 
-        if(topMenu.getSelectPiece){
+        if(boardHolder.getSelectedPiece()){
 
-            panelForButtonArray.getLastButton().setText(selectPiece.getName());
+        	boardHolder.getLastButtonAsText(selectPiece.getName());
            
             if(!selectPiece.getSetUp()){
                selectPiece.setUpPanel();        
             }
 
             if (selectPiece.getDone()){
-                topMenu.turnOffselectPiece();
+            	boardHolder.turnOffselectPiece();
                 selectPiece.hidePanel();
             }
 
@@ -133,52 +78,54 @@ public class FramePanel extends JFrame implements ActionListener{
             }
         }
 
-        if(topMenu.checkSwitchSides()){
-            panelForButtonArray.flipBoard();
-            sidePartsOfBoard.flipNumbersAndLetters();
-            topMenu.switchSidesOff();
+        if(boardHolder.checkSwitchSides()){
+        	boardHolder.flipBoard();
+        	boardHolder.sidePartsOfBoard();
+        	boardHolder.switchSidesOff();
        }
 
-        if(topMenu.saveFileChecker){
+        if(boardHolder.saveFileChecker()){
         	
         	if(!saveBoardState.isSetupDone()){
                 saveBoardState.setUpForInput();
             }
 
             if (saveBoardState.isSubmitted()) {
-                dataOfBoardInNFS = saveBoardState.convertToString(panelForButtonArray.getBoardState());
+                dataOfBoardInNFS = saveBoardState.convertToString(boardHolder.getBoardState());
                 fileNameToSaveAs = saveBoardState.getName();
-                fileMaker.dataToSave(fileNameToSaveAs, dataOfBoardInNFS);
+                fileHandler.dataToSave(fileNameToSaveAs, dataOfBoardInNFS);
 
-                topMenu.turnOffSaveFileChecker();
+                boardHolder.turnOffSaveFileChecker();
                 saveBoardState.reset();
             }
 
             if(saveBoardState.isClosed()){
-                topMenu.turnOffSaveFileChecker();
+            	boardHolder.turnOffSaveFileChecker();
                 saveBoardState.reset();
             }
         }
 
        
-       if(topMenu.checkSelectFile()){
+       if(boardHolder.checkSelectFile()){
             
     	    if(!selectFile.isSetUpDone()){
     	        selectFile.setUpForInput();
     	    }
 
     	    if(selectFile.isSubmitted()){
-    	        fileReader.readFile(selectFile.getText());
-    	        dataToArray.inputing(fileReader.getData());
-    	        panelForButtonArray.setButtonArray(dataToArray.returnChessArray());
-    	        panelForButtonArray.loadBoard();
+    	    	fileHandler.readFile(selectFile.getText());
+    	    	fileHandler.turnDataToArray();
+    	    	
+    	    	
+    	    	boardHolder.setButtonArray(fileHandler.returnChessArray());
+    	    	boardHolder.loadBoard();
 
-    	        topMenu.selectFileOff();
+    	    	boardHolder.selectFileOff();
     	        selectFile.reset();
     	    }
 
     	    if(selectFile.isClosed()){
-    	        topMenu.selectFileOff();
+    	    	boardHolder.selectFileOff();
     	        selectFile.reset();
     	    }
        }

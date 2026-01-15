@@ -1,4 +1,3 @@
-import javax.swing.ImageIcon;
 import java.lang.Math;
 
 public class ValidMoveGetter {
@@ -13,7 +12,7 @@ public class ValidMoveGetter {
     public boolean checkIfValidMove(String piece, int lastx, int lasty, int newx, int newy){
         
         // if displacment in x == displacement in y
-
+    	    	   	
         int xdiff = Math.abs(lastx) - Math.abs(newx);
         int ydiff = Math.abs(lasty) - Math.abs(newy);
 
@@ -21,7 +20,8 @@ public class ValidMoveGetter {
         ydiff = Math.abs(ydiff);
 
         switch(piece.toUpperCase()){
-      
+        
+                
             case "P":
                 
                 if(lastx == 6 || lastx == 1){

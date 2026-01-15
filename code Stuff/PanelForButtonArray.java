@@ -13,7 +13,7 @@ import javax.swing.Timer;
 
 public class PanelForButtonArray implements ActionListener{
 
-    String Piece = "";
+    String piece = "";
 
     boolean movePiece = true;
     boolean letMove = true;
@@ -167,11 +167,12 @@ public class PanelForButtonArray implements ActionListener{
         if(letMove){
             for (int x = 0; x < 8; x ++){
                 for (int y = 0; y < 8; y ++){
-                    if (e.getSource() == buttonArray[x][y]){
-
-                        // needs to check if its a pice then pick it up if its not then dont but ever way let it place. 
+                    if (e.getSource() == buttonArray[x][y] && buttonArray[x][y].getText().charAt(0) != 0){
+                    	                  	
+                    	                    	
+                        // needs to check if its a piece then pick it up if its not then don't but ever way let it place. 
                         if (movePiece && !buttonArray[x][y].getText().matches("") && !buttonArray[x][y].getText().matches(" ")){
-                            Piece = buttonArray[x][y].getText();
+                            piece = buttonArray[x][y].getText();
                             buttonArray[x][y].setIcon(null);
 
                             oldx = x;
@@ -189,7 +190,7 @@ public class PanelForButtonArray implements ActionListener{
                             colourX = x;
                             colourY = y;
 
-                            if(validMoveGetter.checkIfValidMove(Piece, oldx, oldy, x, y)){
+                            if(validMoveGetter.checkIfValidMove(piece, oldx, oldy, x, y)){
                                 buttonArray[x][y].setBackground(Color.green);
                             }
 
@@ -197,7 +198,7 @@ public class PanelForButtonArray implements ActionListener{
                                 buttonArray[x][y].setBackground(Color.red);
                             }
 
-                            buttonArray[x][y].setText(Piece);;
+                            buttonArray[x][y].setText(piece);;
                             movePiece = true;
                         }
                         

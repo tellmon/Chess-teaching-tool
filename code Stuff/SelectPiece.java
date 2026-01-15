@@ -78,31 +78,7 @@ public class SelectPiece implements ActionListener{
 
         setUp = true;
     }
-
-    public void actionLogic(ActionEvent e){
-
-        if(e.getSource() == doneButton){
-            done = true;
-        }
-
-        else{
-
-            for (int x = 0; x < 2; x++){
-                for (int y = 0; y < 6; y++){
-                    if(e.getSource() == buttonArray[x][y]){
-                        name = buttonArray[x][y].getText();
-                        
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        actionLogic(e);
-    }
-
+  
     public String getName(){
         return name;
     }
@@ -194,5 +170,29 @@ public class SelectPiece implements ActionListener{
             
             }
         }
+    }
+    
+    private void actionLogic(ActionEvent e){
+
+        if(e.getSource() == doneButton){
+            done = true;
+        }
+
+        else{
+
+            for (int x = 0; x < 2; x++){
+                for (int y = 0; y < 6; y++){
+                    if(e.getSource() == buttonArray[x][y]){
+                        name = buttonArray[x][y].getText();
+                        
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        actionLogic(e);
     }
 }

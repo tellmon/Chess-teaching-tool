@@ -64,7 +64,43 @@ public class TopMenu implements ActionListener{
         return panel;
     }
 
-    private void actionDoer(ActionEvent e){
+    public void turnOffSaveFileChecker(){
+        saveFileChecker = false;
+    }
+
+    public void turnOffSelectPiece(){
+        getSelectPiece = false;
+    }
+
+    public boolean getSelectPiece(){
+        return getSelectPiece;
+    }
+
+    public boolean checkSaveFileChecker(){
+        return saveFileChecker;
+    }
+
+    public boolean checkSelectFile(){
+        return selectFileCheck;
+    }
+
+    public void selectFileOff(){
+        selectFileCheck = false;
+    }
+
+    public boolean checkSwitchSides(){
+        return runSwitchSides;
+    }
+
+    public void switchSidesOff(){
+        runSwitchSides = false;
+    }
+
+    public boolean checkArrowMode(){
+        return arrowModeOn;
+    }
+    
+    private void actionLogic(ActionEvent e){
 
         if(e.getSource() == selectFile){
             selectFileCheck = true;
@@ -100,43 +136,7 @@ public class TopMenu implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        actionDoer(e);
-    }
-
-    public void turnOffSaveFileChecker(){
-        saveFileChecker = false;
-    }
-
-    public void turnOffselectPiece(){
-        getSelectPiece = false;
-    }
-
-    public boolean getSelectPiece(){
-        return getSelectPiece;
-    }
-
-    public boolean checkSaveFileChecker(){
-        return saveFileChecker;
-    }
-
-    public boolean checkSelectFile(){
-        return selectFileCheck;
-    }
-
-    public void selectFileOff(){
-        selectFileCheck = false;
-    }
-
-    public boolean checkSwitchSides(){
-        return runSwitchSides;
-    }
-
-    public void switchSidesOff(){
-        runSwitchSides = false;
-    }
-
-    public boolean checkArrowMode(){
-        return arrowModeOn;
+    	actionLogic(e);
     }
 
 }

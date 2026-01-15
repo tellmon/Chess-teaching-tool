@@ -14,8 +14,7 @@ public class SaveBoardState implements ActionListener {
     private String positionData = "";
     private String filePath = "";
     
-    JFrame frame = new JFrame();
-    
+        
     public void setUpForInput() {
         submitted = false;
         closed = false;
@@ -30,8 +29,6 @@ public class SaveBoardState implements ActionListener {
         if (result != JFileChooser.APPROVE_OPTION && !submitted) {
             closed = true;
         }
-
-        System.out.println("chooser finished");
     }
 
     public String convertToString(char[][] boardState) {
@@ -85,17 +82,14 @@ public class SaveBoardState implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         String cmd = e.getActionCommand();
-        System.out.println("should close here");
-        
+                
         if (cmd.equals(JFileChooser.APPROVE_SELECTION)) {
             submitted = true;
-            System.out.println("aproved");
             closed = false;
             filePath = fileChooser.getSelectedFile().getAbsolutePath();
         } 
         else if (cmd.equals(JFileChooser.CANCEL_SELECTION)) {
-        	System.out.println("closed");
-            closed = true;
+        	closed = true;
             submitted = false;
         }
     }
