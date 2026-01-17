@@ -27,7 +27,7 @@ public class BoardHolder {
     }
     
     
-    //tom Menu
+    //top Menu
     
     public boolean checkSelectFile() {
     	return topMenu.checkSelectFile();
@@ -89,17 +89,18 @@ public class BoardHolder {
     public char[][] getBoardState(){
     	return panelForButtonArray.getBoardState();
     }
+    
+    public void setLetMove(Boolean setLetMoveTORF) {
+    	panelForButtonArray.setLetMove(setLetMoveTORF);
+    }
+    
         
     
     // arrow stuff
     public boolean checkArrowMode() {        
     	return topMenu.checkArrowMode();
     }
-    
-    public void setLetMove(Boolean setLetMoveTORF) {
-    	panelForButtonArray.setLetMove(setLetMoveTORF);
-    }
-    
+       
     public void arrowDrawing() {
     	arrowLogic.getXAndYOfButtonInPixels(panelForButtonArray.getActionEvent(), panelForButtonArray.getButtonArray());
     }

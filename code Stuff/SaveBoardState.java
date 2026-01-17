@@ -20,7 +20,7 @@ public class SaveBoardState implements ActionListener {
         closed = false;
         setupDone = true;
 
-        fileChooser.removeActionListener(this); // avoid duplicates
+        fileChooser.removeActionListener(this);
         fileChooser.addActionListener(this);
 
         int result = fileChooser.showSaveDialog(null);
