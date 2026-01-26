@@ -72,6 +72,18 @@ public class TopMenu implements ActionListener{
         getSelectPiece = false;
     }
 
+    public void selectFileOff(){
+        selectFileCheck = false;
+    }
+
+    public void switchSidesOff(){
+        runSwitchSides = false;
+    }
+    
+    public boolean checkSwitchSides(){
+        return runSwitchSides;
+    }
+    
     public boolean getSelectPiece(){
         return getSelectPiece;
     }
@@ -82,18 +94,6 @@ public class TopMenu implements ActionListener{
 
     public boolean checkSelectFile(){
         return selectFileCheck;
-    }
-
-    public void selectFileOff(){
-        selectFileCheck = false;
-    }
-
-    public boolean checkSwitchSides(){
-        return runSwitchSides;
-    }
-
-    public void switchSidesOff(){
-        runSwitchSides = false;
     }
 
     public boolean checkArrowMode(){

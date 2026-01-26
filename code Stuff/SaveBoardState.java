@@ -25,7 +25,6 @@ public class SaveBoardState implements ActionListener {
 
         int result = fileChooser.showSaveDialog(null);
 
-        // This catches X button
         if (result != JFileChooser.APPROVE_OPTION && !submitted) {
             closed = true;
         }

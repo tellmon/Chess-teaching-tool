@@ -84,26 +84,26 @@ public class FramePanel extends JFrame implements ActionListener{
         	boardHolder.switchSidesOff();
        }
 
-        if(boardHolder.saveFileChecker()){
+       if(boardHolder.saveFileChecker()){
         	
-        	if(!saveBoardState.isSetupDone()){
-                saveBoardState.setUpForInput();
-            }
+    	   if(!saveBoardState.isSetupDone()){
+               saveBoardState.setUpForInput();
+           }
 
-            if (saveBoardState.isSubmitted()) {
-                dataOfBoardInNFS = saveBoardState.convertToString(boardHolder.getBoardState());
-                fileNameToSaveAs = saveBoardState.getName();
-                fileHandler.dataToSave(fileNameToSaveAs, dataOfBoardInNFS);
+           if (saveBoardState.isSubmitted()) {
+               dataOfBoardInNFS = saveBoardState.convertToString(boardHolder.getBoardState());
+               fileNameToSaveAs = saveBoardState.getName();
+               fileHandler.dataToSave(fileNameToSaveAs, dataOfBoardInNFS);
 
-                boardHolder.turnOffSaveFileChecker();
-                saveBoardState.reset();
-            }
+               boardHolder.turnOffSaveFileChecker();
+               saveBoardState.reset();
+           }
 
-            if(saveBoardState.isClosed()){
-            	boardHolder.turnOffSaveFileChecker();
-                saveBoardState.reset();
-            }
-        }
+           if(saveBoardState.isClosed()){
+        	   boardHolder.turnOffSaveFileChecker();
+               saveBoardState.reset();
+           }
+       }
 
        
        if(boardHolder.checkSelectFile()){
