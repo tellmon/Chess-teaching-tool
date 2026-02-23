@@ -170,7 +170,7 @@ public class PanelForButtonArray implements ActionListener{
                     if (e.getSource() == buttonArray[x][y] && buttonArray[x][y].getText().charAt(0) != 0){
                     	                  	
                     	                    	
-                        // needs to check if its a piece then pick it up if its not then don't but ever way let it place. 
+                        //check if its a piece then pick it up if its not then don't but ever way let it place. 
                         if (movePiece && !buttonArray[x][y].getText().matches("") && !buttonArray[x][y].getText().matches(" ")){
                             piece = buttonArray[x][y].getText();
                             buttonArray[x][y].setIcon(null);

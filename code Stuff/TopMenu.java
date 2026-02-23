@@ -28,7 +28,6 @@ public class TopMenu implements ActionListener{
     }
     
     public JPanel topMenuMaker(){
-
         JPanel panel = new JPanel();
 
         selectFile = new JButton("Select File");
