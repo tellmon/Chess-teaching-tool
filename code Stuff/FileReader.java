@@ -26,17 +26,10 @@ public class FileReader {
             e.printStackTrace();
         }
 
-        dataSpliter(fileInString);
+        data = fileInString;
     }
 
-    private void dataSpliter(String fileInString){
-
-        for (int i = 0; i < fileInString.length(); i++){
-
-            data += fileInString.charAt(i);
-        }
-    }
-
+    
     public String getData(){
         if(data.equals("")){
             return "No data";
