@@ -3,3 +3,5 @@ public class Runner {
         FramePanel framePanel = new FramePanel();
     }
 }
+
+//disable focus highlight on each button

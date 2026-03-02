@@ -50,12 +50,17 @@ public class PanelForButtonArray implements ActionListener{
         boolean switchColours = false;
         
         panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        
+             
         for (int x = 0; x < 8; x ++){
             for (int y = 0; y < 8; y ++){
                 buttonArray[x][y] = new JButton();
                 
+                buttonArray[x][y].setBorderPainted(false);
+                buttonArray[x][y].setFocusable(false);
+                
                 buttonArray[x][y].setFont(new Font("Arial", Font.PLAIN, 80));
-
+                                               
                 buttonArray[x][y].addActionListener(this);
 
                 buttonArray[x][y].setForeground(new Color(0, 0, 0, 0));

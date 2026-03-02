@@ -39,8 +39,8 @@ public class FramePanel extends JFrame implements ActionListener{
     public void SetPanelUp(){
     	boardHolder.setButtonArray(buttonArray);
                 
-        board = boardHolder.returnBoard(board);
-        boardPanel = boardHolder.getBoardPanel();   
+    board = boardHolder.returnBoard(board);
+    boardPanel = boardHolder.getBoardPanel();   
    }
 
     public void setPosisitonsForArrows(){ 

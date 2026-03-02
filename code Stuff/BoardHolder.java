@@ -120,7 +120,7 @@ public class BoardHolder {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         width = (int) screenSize.getWidth();
         height = (int) screenSize.getHeight();
-
+             
         // sets up the board
         board.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         board.setSize(width, height);

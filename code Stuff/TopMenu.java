@@ -34,30 +34,40 @@ public class TopMenu implements ActionListener{
         selectFile.setBackground(Color.white);
         selectFile.addActionListener(this);
         selectFile.setFont(new Font("Arial", Font.PLAIN, textSize));
+        selectFile.setBorderPainted(false);
+        selectFile.setFocusable(false);
         panel.add(selectFile);
 
         saveFile = new JButton("Save State");
         saveFile.setBackground(Color.white);
         saveFile.addActionListener(this);
         saveFile.setFont(new Font("Arial", Font.PLAIN, textSize));
+        saveFile.setBorderPainted(false);
+        saveFile.setFocusable(false);
         panel.add(saveFile);
 
         selectPiece = new JButton("Pieces");
         selectPiece.setBackground(Color.white);
         selectPiece.setFont(new Font("Arial", Font.PLAIN, textSize));
         selectPiece.addActionListener(this);
+        selectPiece.setBorderPainted(false);
+        selectPiece.setFocusable(false);
         panel.add(selectPiece);
 
         switchSides = new JButton("Switch Sides");
         switchSides.setBackground(Color.white);
         switchSides.addActionListener(this);
         switchSides.setFont(new Font("Arial", Font.PLAIN, textSize));
+        switchSides.setBorderPainted(false);
+        switchSides.setFocusable(false);
         panel.add(switchSides);
 
         arrowMode = new JButton("Arrow Mode");
         arrowMode.setBackground(Color.white);
         arrowMode.addActionListener(this);
         arrowMode.setFont(new Font("Arial", Font.PLAIN, textSize));
+        arrowMode.setBorderPainted(false);
+        arrowMode.setFocusable(false);
         panel.add(arrowMode);
 
         return panel;

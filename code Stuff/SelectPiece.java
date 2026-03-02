@@ -35,7 +35,10 @@ public class SelectPiece implements ActionListener{
         for (int x = 0; x < 2; x++){
             for (int y = 0; y < 6; y++){
                 buttonArray[x][y] = new JButton();
-
+                
+                buttonArray[x][y].setBorderPainted(false);
+                buttonArray[x][y].setFocusable(false);
+                
                 buttonArray[x][y].setFont(new Font("Arial", Font.PLAIN, 80));
                 buttonArray[x][y].addActionListener(this);
                 buttonArray[x][y].setBackground(Color.WHITE);
