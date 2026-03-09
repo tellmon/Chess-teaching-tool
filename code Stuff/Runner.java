@@ -4,4 +4,3 @@ public class Runner {
     }
 }
 
-//disable focus highlight on each button

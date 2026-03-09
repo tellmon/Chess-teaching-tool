@@ -68,6 +68,8 @@ public class SelectPiece implements ActionListener{
         doneButton.setText("Done");
         doneButton.addActionListener(this);
         doneButton.setBackground(Color.WHITE);
+        doneButton.setBorderPainted(false);
+        doneButton.setFocusable(false);
 
         donePanel.add(doneButton);
         frame.add(donePanel, BorderLayout.SOUTH);
