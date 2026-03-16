@@ -1,14 +1,21 @@
 import java.lang.Math;
 
+/**
+ * This class is used to check if the move is that was last made is valid or not. 
+ */
 public class ValidMoveGetter {
     
-    
     /**
-     * gets all valid moves.uses a switch case and method to hightlite all valid moves with green
-     * maybe get to show check with red
+     * Gets all valid moves uses a switch case to see if a move is valid or not.
+     * If the move was valid it will return true else it will return false. 
+     * 
+     * @param piece the piece that was moved that we are checking
+     * @param lastx its last x position
+     * @param lasty its last y position
+     * @param newx its new x position
+     * @param newy its new y position
+     * @return true if the move is valid or false if not. 
      */
-    
-
     public boolean checkIfValidMove(String piece, int lastx, int lasty, int newx, int newy){
         
         // if displacment in x == displacement in y

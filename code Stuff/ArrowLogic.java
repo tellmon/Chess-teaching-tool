@@ -9,19 +9,49 @@ import java.awt.geom.Line2D;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * This class controls the drawing of the arrows this is used to draw the arrows from a given position using graphics 2D
+ */
 public class ArrowLogic extends JPanel{
 
+	/**
+	 * the x position of the first square selected
+	 */
     int xPosFirst = 0;
+    
+    /**
+     * the y position of the first square selected
+     */
     int yPosFirst = 0;
 
+    /**
+     * the x position of the second square selected
+     */
     int xPosSecond = 0;
+    
+    /**
+     * the y position of the second square selected
+     */
     int yPosSecond = 0;
 
+    /**
+     * this high of the JButton
+     */
     int hight = 0;
+    
+    /**
+     * the width of the JButton
+     */
     int width = 0;
 
+    /**
+     * used to check if both positions have been selected
+     */
     boolean gotBothPos = false;
 
+    /**
+     * This is used to make the paint component for the drawing and for the g2 component. 
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
@@ -29,6 +59,10 @@ public class ArrowLogic extends JPanel{
         drawArrow(g2);
     }
 
+    /**
+     * This method will check if both postions have been gotten and if thats true it will draw an arrow between them. 
+     * @param g2 this is the graphics object. 
+     */
     private void drawArrow(Graphics2D g2) {
         if (gotBothPos) {
             g2.setColor(Color.RED);
@@ -53,7 +87,13 @@ public class ArrowLogic extends JPanel{
         }
     }
 
-
+    /**
+     * This is used to get the x and y position of the JButton that was clicked and then check to set it as the first position or the second position
+     * as well as set the width and height of the arrow when both arrows have been gotten
+     * 
+     * @param e is the action event clicked
+     * @param buttonArray the arrow of JButtons that was clicked
+     */
     public void getXAndYOfButtonInPixels(ActionEvent e, JButton[][] buttonArray ){
 
         if(xPosFirst == 0 && yPosFirst == 0){
@@ -74,8 +114,8 @@ public class ArrowLogic extends JPanel{
                     if (e.getSource() == buttonArray[x][y]){
                         xPosSecond = buttonArray[x][y].getX() + buttonArray[x][y].getWidth() / 2;
                         yPosSecond = buttonArray[x][y].getY() + buttonArray[x][y].getHeight() / 2;
-                        hight = buttonArray[x][y].getHeight() ;
-                        width = buttonArray[x][y].getWidth() ;
+                        hight = buttonArray[x][y].getHeight();
+                        width = buttonArray[x][y].getWidth();
                         gotBothPos = true;
                     }
                 }
@@ -83,10 +123,17 @@ public class ArrowLogic extends JPanel{
         }
     }
 
+    /**
+     * Returns if both positions of the arrow has been gotten
+     * @return the value of getBothPos
+     */
     public boolean checkIfBothPosHave(){
         return gotBothPos;
     }
 
+    /**
+     * sets all vales to there default positions
+     */
     public void eraseArrows(){
         xPosFirst = 0;
         yPosFirst = 0;

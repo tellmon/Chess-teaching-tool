@@ -1,3 +1,7 @@
+
+/**
+ * This class if so any data that was taken from a file using my custom FEN notation can be converted to the 2D array
+ */
 public class DataToArray {
     
     // upper case is white
@@ -14,10 +18,22 @@ public class DataToArray {
     //  The number of halfmoves since the last capture or pawn advance 0
     //  The number of fullmoves since the last capture or pawn advance 1
 
+	/**
+	 * this is the array used to the store chess array as the 2D char. 
+	 */
     char[][] chessBoardArray = new char[8][8];
 
+    /**
+     * This is the string in order to store the data before it is processed as to the array
+     */
     String positonData = "";
-
+    
+    /**
+     * This processes the entire chess board from the custom FEN notation to the 2D chess board array. 
+     * The chess array is stored in chessBoardArray and can be returned from the method returnChessArray in this class.
+     * 
+     * @param data this is the data of the chess board before it is processed in a list 
+     */
     public void inputing(String data){
 
         int nextLineCount = 0;
@@ -61,10 +77,18 @@ public class DataToArray {
         }
     }
 
+    /**
+     * 
+     * @return the chessBoardArray variable.
+     */
     public char[][] returnChessArray(){
         return chessBoardArray;
     }
 
+    /**
+     * This gets the array and returns it as a string to be printed out of testing purposes. 
+     * @return a string of the chess board printed out for testing purposes. 
+     */
     public String boardStateOutput(){
 
         String output = "";
