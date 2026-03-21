@@ -13,32 +13,32 @@ public class SidePartsOfBoard {
 	/**
      * This is the JLable array for the numbers
      */
-    JLabel[] numberArray = new JLabel[9];
+	private JLabel[] numberArray = new JLabel[9];
     
     /**
-     * This is the JLable array for the letters
+     * This is the JLabel array for the letters
      */
-    JLabel[] letterArray = new JLabel[10];
+	private JLabel[] letterArray = new JLabel[10];
 
     /**
      * This is the JPanel for the numbers
      */
-    JPanel numberPanel = new JPanel(new GridLayout(8, 0));
+	private JPanel numberPanel = new JPanel(new GridLayout(8, 0));
     
     /**
      * This is the JPanel for the letters
      */
-    JPanel letterPanel = new JPanel(new GridLayout(0, 8));
+	private JPanel letterPanel = new JPanel(new GridLayout(0, 8));
 
     /**
      * the string to be displayed at the bottom of the board to be broken up. 
      */
-    String alphabet = "ABCDEFGH";
+	private String alphabet = "ABCDEFGH";
     
     /**
      * the test size of the letters and number to be displayed 
      */
-    int textSize = 50;
+	private int textSize = 50;
     
     /**
      * used to set the size of the letters when creating the class

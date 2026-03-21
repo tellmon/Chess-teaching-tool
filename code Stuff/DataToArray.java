@@ -21,12 +21,12 @@ public class DataToArray {
 	/**
 	 * this is the array used to the store chess array as the 2D char. 
 	 */
-    char[][] chessBoardArray = new char[8][8];
+	private char[][] chessBoardArray = new char[8][8];
 
     /**
      * This is the string in order to store the data before it is processed as to the array
      */
-    String positonData = "";
+	private String positonData = "";
     
     /**
      * This processes the entire chess board from the custom FEN notation to the 2D chess board array. 

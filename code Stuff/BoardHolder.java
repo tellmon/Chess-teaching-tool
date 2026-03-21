@@ -6,59 +6,119 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+/**
+ * This contains everything needed for the board that is visible like the board and the arrows. 
+ */
 public class BoardHolder {
 	
-	int width = 0;
-    int height = 0;
-    JPanel boardPanel;
+	/**
+	 * width of the screen
+	 */
+	private int width = 0;
 	
-	ArrowLogic arrowLogic = new ArrowLogic();
-    TopMenu topMenu = new TopMenu(50); //text size
-    SidePartsOfBoard sidePartsOfBoard = new SidePartsOfBoard(50); //text size
-    PanelForButtonArray panelForButtonArray;
+	/**
+	 * Height of the screen
+	 */
+	private int height = 0;
     
+    /**
+     * JPanel to store the board
+     */
+	private JPanel boardPanel;
+	
+    /**
+     * The class of the arrowLogic where drawing arrows takes place
+     */
+	private ArrowLogic arrowLogic = new ArrowLogic();
+	
+	/**
+	 * the menu for the TopMenu that has all the buttons for the top menu
+	 */
+	private TopMenu topMenu = new TopMenu(50); //text size
+    
+    /**
+     * this is the class for the side parts of the board that has the letters and numbers on the side
+     */
+	private SidePartsOfBoard sidePartsOfBoard = new SidePartsOfBoard(50); //text size
+    
+    /**
+     * This is the main board of the chess array where everything with the board is here.  
+     */
+	private PanelForButtonArray panelForButtonArray;
+    
+    /**
+     * This just parses the frame to the board needed for the board to function
+     * @param frame the JFrame
+     */
     public BoardHolder(FramePanel frame) {
-    	panelForButtonArray = new PanelForButtonArray(frame);
+    		panelForButtonArray = new PanelForButtonArray(frame);
     }
     
-    //side menu
+    // flip board
+    /**
+     *This runs the flipNumbers and letters part of side part of board 
+     */
     public void sidePartsOfBoard() {
-    	sidePartsOfBoard.flipNumbersAndLetters();
+    		sidePartsOfBoard.flipNumbersAndLetters();
     }
     
     
     //top Menu
     
+    /**
+     * @return the boolean value of the buttons trigger for  select file
+     */
     public boolean checkSelectFile() {
-    	return topMenu.checkSelectFile();
+    		return topMenu.checkSelectFile();
     }
     
+    /**
+     * @return the boolean value of the buttons trigger for save file 
+     */
     public boolean saveFileChecker() {
-    	return topMenu.saveFileChecker;
+    		return topMenu.checkSaveFileChecker();
     }
     
+    /**
+     * @return the boolean value of the buttons trigger for select Piece
+     */
     public boolean getSelectedPiece() {
-    	return topMenu.getSelectPiece;
+    		return topMenu.getSelectPiece();
     }
     
+    /**
+     * @return the boolean value of the buttons trigger for the switch sides of the board file 
+     */
     public boolean checkSwitchSides() {
-    	return topMenu.checkSwitchSides();
+    		return topMenu.checkSwitchSides();
     }
     
+    /**
+     * turns the boolean value of select file buttons trigger off.
+     */
     public void selectFileOff() {
-    	topMenu.selectFileOff();
+    		topMenu.selectFileOff();
     }
     
+    /**
+     *  turns the boolean value of save file buttons trigger off.
+     */
     public void turnOffSaveFileChecker() {
-    	topMenu.turnOffSaveFileChecker();
+    		topMenu.turnOffSaveFileChecker();
     }
     
+    /**
+     *  turns the boolean value of switch sides buttons trigger off.
+     */
     public void switchSidesOff() {
-    	topMenu.switchSidesOff();
+    		topMenu.switchSidesOff();
     }
     
+   /**
+   *  turns the boolean value of select pieces buttons trigger off. 
+   */
     public void turnOffselectPiece() {
-    	topMenu.turnOffSelectPiece();
+    		topMenu.turnOffSelectPiece();
     }
     
        		
@@ -66,53 +126,91 @@ public class BoardHolder {
     
     
     // button panel
+    /**
+     * runs the method to flips the board from the board
+     */
     public void flipBoard() {
-    	panelForButtonArray.flipBoard();
+    		panelForButtonArray.flipBoard();
     }
     
-    public void getLastButtonAsText(String name) {
-    	panelForButtonArray.getLastButton().setText(name);
+    /**
+     * @param name the string you want to put onto the button that was last pressed
+     */
+    public void setLastButtonText(String name) {
+    		panelForButtonArray.getLastButton().setText(name);
     }
     
+    /**
+     * @param buttonArray the chess board 2D array of char's you want to set as the new boardd
+     */
     public void setButtonArray(char[][] buttonArray) {
-    	panelForButtonArray.setButtonArray(buttonArray);
+    		panelForButtonArray.setButtonArray(buttonArray);
     }
     
+    /**
+     * @return the JPanel of the button array
+     */
     public JPanel getButtonArrayJPanel() {
-    	return panelForButtonArray.buttonArray();
+    		return panelForButtonArray.buttonArray();
     }
     
+    /**
+     * runs the load board method for the chess board
+     */
     public void loadBoard() {
-    	panelForButtonArray.loadBoard();
+    		panelForButtonArray.loadBoard();
     }
     
+    /**
+     * @return the board as a 2D char array
+     */
     public char[][] getBoardState(){
-    	return panelForButtonArray.getBoardState();
+    		return panelForButtonArray.getBoardState();
     }
     
+    /**
+     * @param setLetMoveTORF sets the value of let move for board based of this boolean value
+     */
     public void setLetMove(Boolean setLetMoveTORF) {
-    	panelForButtonArray.setLetMove(setLetMoveTORF);
+    		panelForButtonArray.setLetMove(setLetMoveTORF);
     }
     
         
     
     // arrow stuff
+    
+    /**
+     * @return the boolean value of if arrow mode is active or not
+     */
     public boolean checkArrowMode() {        
-    	return topMenu.checkArrowMode();
+    		return topMenu.checkArrowMode();
     }
        
+    /**
+     * runs the method to get the x and y of the button using the last pressed button and the button array to find it
+     */
     public void arrowDrawing() {
-    	arrowLogic.getXAndYOfButtonInPixels(panelForButtonArray.getActionEvent(), panelForButtonArray.getButtonArray());
+    		arrowLogic.getXAndYOfButtonInPixels(panelForButtonArray.getActionEvent(), panelForButtonArray.getButtonArray());
     }
     
+    /**
+     * runs the erase function in arrowLogic to put it back to default when arrow mode is no longer active
+     */
     public void erraseArrow() {
-    	arrowLogic.eraseArrows();
+    		arrowLogic.eraseArrows();
     }
     
     
     // board
     
-    
+    /**
+     * 
+     * gets the size of the screen and then creates the board that the user sees with there dimensions using layered panels of the arrow mode 
+     * and every added onto the frame to create the Graphical User Interface 
+     * 
+     * @param board the JFrame where the board is going to be onto
+     * @return the Frame with the board fully complete
+     */
     public JFrame returnBoard(JFrame board) {
     	boardPanel = getButtonArrayJPanel();
 
@@ -150,7 +248,10 @@ public class BoardHolder {
         return board;
     }
     
+    /**
+     * @return the JPanel of the board
+     */
     public JPanel getBoardPanel() {
-    	return boardPanel;
+    		return boardPanel;
     }
 }

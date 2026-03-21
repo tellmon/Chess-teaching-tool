@@ -11,7 +11,7 @@ public class FileReader {
 	/**
 	 * this is the variable that the data is stored when the file is read out. 
 	 */
-    static String data = "";
+	private static String data = "";
 
     /**
      * This will take a name of a file and read the full file into a string that can be returned with the getData method. 

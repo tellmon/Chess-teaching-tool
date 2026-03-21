@@ -5,25 +5,69 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * This is the main part of the program. This is the connector between most of the classes and sets everything up like the board and the top menu
+ */
 public class FramePanel extends JFrame implements ActionListener{
 
-    String dataOfBoardInNFS;
-    String fileNameToSaveAs;
-
-    JFrame board = new JFrame("Chess Board");
+	/**
+	 * the board as its BNF format 
+	 */
+    private String dataOfBoardInFEN;
     
-    SelectPiece selectPiece = new SelectPiece();
-    FileHandler fileHandler = new FileHandler();
-    SelectFile selectFile = new SelectFile();
-    SaveBoardState saveBoardState = new SaveBoardState();
-    BoardHolder boardHolder = new BoardHolder(this);       
+    /**
+     * the file to save the boards name. 
+     */
+    private  String fileNameToSaveAs;
+
+    /**
+     * the frame which holds the main parts of the chess program with the board and menus.
+     */
+    private JFrame board = new JFrame("Chess Board");
     
-    Timer tick = new Timer(40, this);
+    /**
+     * The class selectPiece used in topMenu
+     */
+    private SelectPiece selectPiece = new SelectPiece();
+    
+    /**
+     * The class fileHandler that handles the file part of the program
+     */
+    private FileHandler fileHandler = new FileHandler();
+    
+    /**
+     * The class of selectFile that is used with JChoser that lets the user select the file. 
+     */
+    private SelectFile selectFile = new SelectFile();
+    
+    /**
+     * The class of saveBoardState that is used with JChoser that lets the user save the board. 
+     */
+    private SaveBoardState saveBoardState = new SaveBoardState();
+    
+    /**
+     * The class boardHolder  that is used to deal with the main board
+     */
+    private BoardHolder boardHolder = new BoardHolder(this);       
+    
+    /**
+     * The tick used in this class to check everything to make sure it runs smoothly.
+     */
+    private Timer tick = new Timer(40, this);
 
-    char[][] buttonArray;
+    /**
+     * The 2D char array to store the chess board.
+     */
+    private char[][] buttonArray;
 
-    JPanel boardPanel;
+    /**
+     * The JPanel that the main board is on.
+     */
+    private JPanel boardPanel;
 
+    /**
+     * loads the blank board from the file and runs setPanelUP
+     */
     public FramePanel(){
 
         String name = "Blank.txt";
@@ -36,13 +80,20 @@ public class FramePanel extends JFrame implements ActionListener{
         SetPanelUp();
     }
 
-    public void SetPanelUp(){
+    /**
+     * uses board holder with the button array to set up the button array for chess and then sets it onto the panel
+     */
+    private void SetPanelUp(){
     	boardHolder.setButtonArray(buttonArray);
                 
     board = boardHolder.returnBoard(board);
     boardPanel = boardHolder.getBoardPanel();   
    }
 
+    /**
+     * checks if arrow mode is on. If so then it will not let pieces to move else it will
+     * If true it will also run the boardHolders arrowDrawing to draw the arrow.
+     */
     public void setPosisitonsForArrows(){ 
         boolean arrowMode = boardHolder.checkArrowMode();
         
@@ -58,18 +109,25 @@ public class FramePanel extends JFrame implements ActionListener{
 
     }
 
+    /**
+     * This will take the action event and check to see what happens and then does what it needs to do for each event. 
+     * This contains the logic for the selectPieces, switchSides and file checking loading & saving. 
+     * After checking all of the stuff then it will repaint the board
+     * 
+     * @param e the action event
+     */
     private void actionLogic(ActionEvent e){
 
         if(boardHolder.getSelectedPiece()){
 
-        	boardHolder.getLastButtonAsText(selectPiece.getName());
+        		boardHolder.setLastButtonText(selectPiece.getName());
            
             if(!selectPiece.getSetUp()){
                selectPiece.setUpPanel();        
             }
 
             if (selectPiece.getDone()){
-            	boardHolder.turnOffselectPiece();
+            		boardHolder.turnOffselectPiece();
                 selectPiece.hidePanel();
             }
 
@@ -79,60 +137,63 @@ public class FramePanel extends JFrame implements ActionListener{
         }
 
         if(boardHolder.checkSwitchSides()){
-        	boardHolder.flipBoard();
-        	boardHolder.sidePartsOfBoard();
-        	boardHolder.switchSidesOff();
-       }
+	        	boardHolder.flipBoard();
+	        	boardHolder.sidePartsOfBoard();
+	        	boardHolder.switchSidesOff();
+        }
 
        if(boardHolder.saveFileChecker()){
         	
-    	   if(!saveBoardState.isSetupDone()){
-               saveBoardState.setUpForInput();
-           }
-
-           if (saveBoardState.isSubmitted()) {
-               dataOfBoardInNFS = saveBoardState.convertToString(boardHolder.getBoardState());
-               fileNameToSaveAs = saveBoardState.getName();
-               fileHandler.dataToSave(fileNameToSaveAs, dataOfBoardInNFS);
-
-               boardHolder.turnOffSaveFileChecker();
-               saveBoardState.reset();
-           }
-
-           if(saveBoardState.isClosed()){
-        	   boardHolder.turnOffSaveFileChecker();
-               saveBoardState.reset();
-           }
+	    	   if(!saveBoardState.isSetupDone()){
+	               saveBoardState.setUpForInput();
+	           }
+	
+	           if (saveBoardState.isSubmitted()) {
+	               dataOfBoardInFEN = saveBoardState.convertToString(boardHolder.getBoardState());
+	               fileNameToSaveAs = saveBoardState.getName();
+	               fileHandler.dataToSave(fileNameToSaveAs, dataOfBoardInFEN);
+	
+	               boardHolder.turnOffSaveFileChecker();
+	               saveBoardState.reset();
+	           }
+	
+	           if(saveBoardState.isClosed()){
+	        	   	   boardHolder.turnOffSaveFileChecker();
+	               saveBoardState.reset();
+	           }
        }
 
        
        if(boardHolder.checkSelectFile()){
             
-    	    if(!selectFile.isSetUpDone()){
-    	        selectFile.setUpForInput();
-    	    }
-
-    	    if(selectFile.isSubmitted()){
-    	    	fileHandler.readFile(selectFile.getText());
-    	    	fileHandler.turnDataToArray();
-    	    	
-    	    	
-    	    	boardHolder.setButtonArray(fileHandler.returnChessArray());
-    	    	boardHolder.loadBoard();
-
-    	    	boardHolder.selectFileOff();
-    	        selectFile.reset();
-    	    }
-
-    	    if(selectFile.isClosed()){
-    	    	boardHolder.selectFileOff();
-    	        selectFile.reset();
-    	    }
+	    	   if(!selectFile.isSetUpDone()){
+	    	       selectFile.setUpForInput();
+	    	   }
+	
+	    	   if(selectFile.isSubmitted()){
+	    		   fileHandler.readFile(selectFile.getText());
+	    		   fileHandler.turnDataToArray();
+	    	    	
+	    	    	
+	    		   boardHolder.setButtonArray(fileHandler.returnChessArray());
+	    		   boardHolder.loadBoard();
+	
+	    		   boardHolder.selectFileOff();
+	    	       selectFile.reset();
+	    	    }
+	
+	    	    if(selectFile.isClosed()){
+	    	    		boardHolder.selectFileOff();
+	    	        selectFile.reset();
+	    	    }
        }
 
        boardPanel.repaint();
     }
 
+    /**
+     * runs actionLogic with the action event to do what need to happen
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
        actionLogic(e);

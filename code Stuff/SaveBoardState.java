@@ -3,18 +3,41 @@ import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
+/**
+ * This class is used to create the interface used to save the file for exporting the board
+ */
 public class SaveBoardState implements ActionListener {
 
+	/**
+     * this is the interface that i use to save and select files for the program with a nice gui
+     */
     private final JFileChooser fileChooser = new JFileChooser();
 
+    /**
+     * this will check if the user has submitted a file to import
+     */
     private boolean submitted = false;
+    
+    /**
+     * This check if the setup for the panel has already happened and will skip it if it has. 
+     */
     private boolean setupDone = false;
+    
+    /**
+     * This checks if the panel has been closed by the user. 
+     */
     private boolean closed = false;
 
     private String positionData = "";
+    
+    /**
+     * this is the string where the file path will be stored. 
+     */
     private String filePath = "";
     
-        
+    /**
+     * This is creating the JFileChoser and adding its actionListener and then setting it to its save Dialog version
+     */
     public void setUpForInput() {
         submitted = false;
         closed = false;
@@ -30,6 +53,11 @@ public class SaveBoardState implements ActionListener {
         }
     }
 
+    /**
+     * This takes the board state and then converted its 2D array to the string used in the saved file with the custom BNF format. 
+     * @param boardState the board as a 2D array of chars
+     * @return the string of the position data 
+     */
     public String convertToString(char[][] boardState) {
         positionData = "";
         int count = 0;
@@ -54,22 +82,37 @@ public class SaveBoardState implements ActionListener {
         return positionData.substring(0, positionData.length() - 1);
     }
 
+    /**
+     * @return the file path that was submitted
+     */
     public String getName() {
         return filePath;
     }
 
+    /** 
+     * @return the boolean value of submitted
+     */
     public boolean isSubmitted() {
         return submitted;
     }
 
+    /**
+     * @return the boolean value of setUpDone
+     */
     public boolean isSetupDone() {
         return setupDone;
     }
-
+    
+    /**
+     * @return the boolean value of closed
+     */
     public boolean isClosed() {
         return closed;
     }
 
+    /**
+     * resets all the values to there default states
+     */
     public void reset() {
         setupDone = false;
         submitted = false;
@@ -77,6 +120,10 @@ public class SaveBoardState implements ActionListener {
         filePath = "";
     }
 
+    /**
+     * This will get the action event and then check if the file is one of the approved section then if so it will set is as the text 
+     * else it will keep the panel open till a approved section is submitted
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 

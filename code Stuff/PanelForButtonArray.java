@@ -13,36 +13,91 @@ import javax.swing.Timer;
 
 public class PanelForButtonArray implements ActionListener{
 
-    String piece = "";
+	/**
+	 * the last piece selected
+	 */
+	private String piece = "";
 
-    boolean movePiece = true;
-    boolean letMove = true;
+	/**
+	 * active when a piece is picked up, shows when a piece is getting moved
+	 */
+	private boolean movePiece = true;
+	
+	/**
+	 * show when the user can move a piece on the board
+	 */
+	private boolean letMove = true;
 
-    char[][] chessBoardState = new char[8][8];
-    JButton[][] buttonArray = new JButton[8][8];
+	/**
+	 * the chess array stored as a 2D array of chars
+	 */
+	private  char[][] chessBoardState = new char[8][8];
+	
+	/**
+	 * the chess board stored as a 2D array of JButtons
+	 */
+	private JButton[][] buttonArray = new JButton[8][8];
 
-    ValidMoveGetter validMoveGetter = new ValidMoveGetter();
+	/**
+	 * the class to validate moves made by the user
+	 */
+	private ValidMoveGetter validMoveGetter = new ValidMoveGetter();
 
-    JButton lastButtonPressed = new JButton();
+	/**
+	 * stores the last button pressed by the user on the board
+	 */
+	private JButton lastButtonPressed = new JButton();
 
-    ActionEvent lastEvent;
+	/**
+	 * the last action event that was course by the user
+	 */
+	private ActionEvent lastEvent;
 
-    Timer tick = new Timer(40, this);
+	/**
+	 * the timer so the action event can trigger not just by user action
+	 */
+	private Timer tick = new Timer(40, this);
 
-    int oldx = 0;
-    int oldy = 0;
+	/**
+	 * the old x position of the last piece moved
+	 */
+	private int oldx = 0;
+	
+	/**
+	 * the old y position of the last piece moved
+	 */
+	private int oldy = 0;
 
-    Color oldButtonColour = new Color(100, 100, 250);
-    int colourX, colourY;
+	/**
+	 * the old button colour of the last piece moved
+	 */
+	private Color oldButtonColour = new Color(100, 100, 250);
+	
+	/**
+	 * the x and y position of the button that changed colour to display valid move
+	 */
+	private int colourX, colourY;
 
+	/**
+	 * The frame that is pasted down from FramePanel which holds the main board
+	 */
     private FramePanel frame;
 
+    /**
+     * @param frame the frame of the main board that the user see with all the buttons
+     * this starts the timer and then sets the this frame as the frame passed to it
+     */
     public PanelForButtonArray(FramePanel frame) {
         tick.start();
 
         this.frame = frame;
     }
 
+    /**
+     * This creates the JPanel and all the buttons. then it goes and alternate the colour to put onto the board, makes its preferred size and adds to to the panel.
+     * then runs loadBoard for the icons. 
+     * @return the panel of the buttons with the pieces on the JPanel
+     */
     public JPanel buttonArray() {
         
         JPanel panel = new JPanel(new GridLayout(0, 8));
@@ -86,6 +141,10 @@ public class PanelForButtonArray implements ActionListener{
         return panel;
     }
 
+    /**
+     * takes an actionEvent and stores the button it goes with in lastButtonPressed
+     * @param e an action event 
+     */
     private void lastButtonPresed(ActionEvent e){
         for (int x = 0; x < 8; x ++){
            for (int y = 0; y < 8; y ++){
@@ -96,6 +155,9 @@ public class PanelForButtonArray implements ActionListener{
         }
     }
 
+    /**
+     * sets the icons of the pictures onto the board based off what pieces are on the at the square
+     */
     private void setIcons(){
 
         String text = "";
@@ -168,6 +230,15 @@ public class PanelForButtonArray implements ActionListener{
         }
     }
 
+    /**
+     * does the move logic for the pieces
+     * 
+     * logic:
+     * If let move is active then it will take the square selected and see if a move is already in play if not then it will take what piece is on the board and then take its x and y position as well as its colour
+     * If a move is currently in progress then all the piece is set as the new text and the old and new place as well as the piece is used in validMoveGetter to see if that move was valid.
+     * 
+     * @param e the action event
+     */
     private void movePieces(ActionEvent e){
         if(letMove){
             for (int x = 0; x < 8; x ++){
@@ -203,7 +274,7 @@ public class PanelForButtonArray implements ActionListener{
                                 buttonArray[x][y].setBackground(Color.red);
                             }
 
-                            buttonArray[x][y].setText(piece);;
+                            buttonArray[x][y].setText(piece);
                             movePiece = true;
                         }
                         
@@ -213,6 +284,9 @@ public class PanelForButtonArray implements ActionListener{
         }
     }
 
+    /**
+     * takes the board and flips it around so you can see if from the other sides perspective
+     */
     public void flipBoard(){
 
         JButton[][] flipedButtonArray = new JButton[8][8];
@@ -246,7 +320,7 @@ public class PanelForButtonArray implements ActionListener{
 
         resetColourOfButton();
         
-        /**    
+        /*   
         * logic:
         * 
         * so we need to flip the board in the black and white center lines.
@@ -266,6 +340,9 @@ public class PanelForButtonArray implements ActionListener{
         */
     }
 
+    /**
+     * the actionPerformed that is the triggers when a action is taken by the user
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         lastEvent = e;
@@ -275,6 +352,9 @@ public class PanelForButtonArray implements ActionListener{
         setIcons();
     }
 
+    /**
+     * sets all the boards icons to null and then sets the text of the boards buttons as whats stored at chessBoardStates in the same part of the array
+     */
     public void loadBoard(){
         for (int x = 0; x < 8; x ++){
             for (int y = 0; y < 8; y ++){
@@ -285,26 +365,50 @@ public class PanelForButtonArray implements ActionListener{
         resetColourOfButton();
     }
 
+    /**
+     * 
+     * @param letMove the value to set letMove
+     */
     public void setLetMove(boolean letMove){
         this.letMove = letMove;
     }
 
+    /**
+     * 
+     * @return the last event trigured
+     */
     public ActionEvent getActionEvent(){
         return lastEvent;
     }    
 
+    /**
+     * sets the chessBoardState as the value inputed
+     * @param piecesCharArray the chess array as a 2D char
+     */
     public void setButtonArray(char[][] piecesCharArray){
         chessBoardState = piecesCharArray;
     }
 
+    /**
+     * 
+     * @return the button array
+     */
     public JButton[][] getButtonArray(){
         return buttonArray;
     }
 
+    /**
+     * 
+     * @return the last button pressed
+     */
     public JButton getLastButton(){
         return lastButtonPressed;
     }
 
+    /**
+     * 
+     * @return gets the button array and takes all the texts and puts it to the chessBoardState that is returned as the 2D array
+     */
     public char[][] getBoardState(){
         for (int x = 0; x < 8; x ++){
             for (int y = 0; y < 8; y ++){
@@ -315,6 +419,9 @@ public class PanelForButtonArray implements ActionListener{
         return chessBoardState;
     }
 
+    /**
+     * sets the last button pressed colour as the last colour that was changed
+     */
     private void resetColourOfButton(){
         lastButtonPressed.setBackground(oldButtonColour);
     }

@@ -17,37 +17,37 @@ public class ArrowLogic extends JPanel{
 	/**
 	 * the x position of the first square selected
 	 */
-    int xPosFirst = 0;
+	private int xPosFirst = 0;
     
     /**
      * the y position of the first square selected
      */
-    int yPosFirst = 0;
+	private int yPosFirst = 0;
 
     /**
      * the x position of the second square selected
      */
-    int xPosSecond = 0;
+	private int xPosSecond = 0;
     
     /**
      * the y position of the second square selected
      */
-    int yPosSecond = 0;
+	private int yPosSecond = 0;
 
     /**
      * this high of the JButton
      */
-    int hight = 0;
+	private int hight = 0;
     
     /**
      * the width of the JButton
      */
-    int width = 0;
+	private int width = 0;
 
     /**
      * used to check if both positions have been selected
      */
-    boolean gotBothPos = false;
+	private boolean gotBothPos = false;
 
     /**
      * This is used to make the paint component for the drawing and for the g2 component. 

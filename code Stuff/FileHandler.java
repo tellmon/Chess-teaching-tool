@@ -4,19 +4,19 @@
 public class FileHandler {
 	
 	/**
-	 * This makes the file Reader class to be used to read the files.
+	 * The file Reader class to be used to read the files.
 	 */
-    FileReader fileReader = new FileReader();
+	private FileReader fileReader = new FileReader();
     
     /**
-     * This creates the dataToArray class so data can be converted to the 2D chess board array
+     * The dataToArray class so data can be converted to the 2D chess board array
      */
-    DataToArray dataToArray = new DataToArray();
+	private DataToArray dataToArray = new DataToArray();
     
     /**
-     * The creates the fileMaker class that is used to make files. 
+     * The fileMaker class that is used to make files. 
      */
-    FileMaker fileMaker = new FileMaker();
+	private FileMaker fileMaker = new FileMaker();
     
     /**
      * Calls fileReader to read the file

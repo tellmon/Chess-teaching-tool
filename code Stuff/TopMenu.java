@@ -6,27 +6,80 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * this is the top menu contains all the buttons needed for the options for the chess board
+ */
 public class TopMenu implements ActionListener{
 
-    JButton selectFile = new JButton();
-    JButton selectPiece = new JButton();
-    JButton switchSides = new JButton();
-    JButton arrowMode = new JButton();
-    JButton saveFile = new JButton();
+	/**
+	 * the button for selectFile
+	 */
+	private JButton selectFile = new JButton();
+    
+    /**
+     * the button for selectPiece
+     */
+	private JButton selectPiece = new JButton();
+    
+    /**
+     * the button for switchSides
+     */
+	private JButton switchSides = new JButton();
+    
+    /**
+     * the button to turn arrow mode on
+     */
+	private JButton arrowMode = new JButton();
+    
+    /**
+     * the button to save a file 
+     */
+	private JButton saveFile = new JButton();
 
-    boolean arrowModeOn = false;
-    boolean runSwitchSides = false;
-    boolean selectFileCheck = false;
-    boolean saveFileChecker = false;
-    boolean getSelectPiece = false;
+    /**
+     * boolean value of if arrow Mode is on
+     */
+	private boolean arrowModeOn = false;
     
-    int textSize = 50;
+    /**
+     * boolean value of if runSwitchSides is on
+     */
+	private boolean runSwitchSides = false;
     
+    /**
+     * boolean value of if selectFileCheck is on
+     */
+	private boolean selectFileCheck = false;
+    
+    /**
+     * boolean value of if saveFileChecker is on
+     */
+	private boolean saveFileChecker = false;
+    
+    /**
+     * boolean value of if getSelectPiece is on
+     */
+	private boolean getSelectPiece = false;
+    
+    /**
+     * text size of the buttons
+     */
+	private int textSize = 50;
+    
+    /**
+     * when creating the class it will set the textSize
+     * @param x sets the text size of the buttons 
+     */
     public TopMenu(int x) {
-    	textSize = x;
+    		textSize = x;
     	
     }
     
+    /**
+     * This makes all the buttons with there names, colours and actionListener and everything else they need as well as putting in on a JPanel that it returns 
+     * 
+     * @return JPanel of the buttons
+     */
     public JPanel topMenuMaker(){
         JPanel panel = new JPanel();
 
@@ -73,42 +126,75 @@ public class TopMenu implements ActionListener{
         return panel;
     }
 
+    /**
+     * turns the boolean value saveFileChecker OFF
+     */
     public void turnOffSaveFileChecker(){
         saveFileChecker = false;
     }
 
+    /**
+     * turns the boolean value getSelectPiece OFF
+     */
     public void turnOffSelectPiece(){
         getSelectPiece = false;
     }
 
+    /**
+     * turns the boolean value selectFileCheck OFF
+     */
     public void selectFileOff(){
         selectFileCheck = false;
     }
 
+    /**
+     * turns the boolean value runSwitchSides OFF
+     */
     public void switchSidesOff(){
         runSwitchSides = false;
     }
     
+    /**
+     * @return the value of runSwitchSides
+     */
     public boolean checkSwitchSides(){
         return runSwitchSides;
     }
     
+    /**
+     * @return the value of getSelectPiece
+     */
     public boolean getSelectPiece(){
         return getSelectPiece;
     }
 
+    /**
+     * @return the value of saveFileChecker
+     */
     public boolean checkSaveFileChecker(){
         return saveFileChecker;
     }
 
+    /**
+     * @return the value of selectFileCheck
+     */
     public boolean checkSelectFile(){
         return selectFileCheck;
     }
 
+    /**
+     * @return the value of arrowModeOn
+     */
     public boolean checkArrowMode(){
         return arrowModeOn;
     }
     
+    /**
+     * takes the action event. Finds which button was pressed and sets the value to true or for switch sides & arrow mode its opposite value.
+     * For arrow mode it also changes it background based of its boolean value 
+     * 
+     * @param e the action event
+     */
     private void actionLogic(ActionEvent e){
 
         if(e.getSource() == selectFile){
@@ -143,6 +229,9 @@ public class TopMenu implements ActionListener{
 
     }
 
+    /**
+     * runs action logic
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
     	actionLogic(e);
