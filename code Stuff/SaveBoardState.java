@@ -9,12 +9,12 @@ import javax.swing.JFrame;
 public class SaveBoardState implements ActionListener {
 
 	/**
-     * this is the interface that i use to save and select files for the program with a nice gui
+     * This is the interface that i use to save and select files for the program with a nice gui
      */
     private final JFileChooser fileChooser = new JFileChooser();
 
     /**
-     * this will check if the user has submitted a file to import
+     * This will check if the user has submitted a file to import
      */
     private boolean submitted = false;
     
@@ -31,7 +31,7 @@ public class SaveBoardState implements ActionListener {
     private String positionData = "";
     
     /**
-     * this is the string where the file path will be stored. 
+     * This is the string where the file path will be stored. 
      */
     private String filePath = "";
     

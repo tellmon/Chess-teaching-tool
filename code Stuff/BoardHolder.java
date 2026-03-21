@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 public class BoardHolder {
 	
 	/**
-	 * width of the screen
+	 * Width of the screen
 	 */
 	private int width = 0;
 	
@@ -32,12 +32,12 @@ public class BoardHolder {
 	private ArrowLogic arrowLogic = new ArrowLogic();
 	
 	/**
-	 * the menu for the TopMenu that has all the buttons for the top menu
+	 * The menu for the TopMenu that has all the buttons for the top menu
 	 */
 	private TopMenu topMenu = new TopMenu(50); //text size
     
     /**
-     * this is the class for the side parts of the board that has the letters and numbers on the side
+     * This is the class for the side parts of the board that has the letters and numbers on the side
      */
 	private SidePartsOfBoard sidePartsOfBoard = new SidePartsOfBoard(50); //text size
     
@@ -48,6 +48,7 @@ public class BoardHolder {
     
     /**
      * This just parses the frame to the board needed for the board to function
+     * 
      * @param frame the JFrame
      */
     public BoardHolder(FramePanel frame) {
@@ -94,28 +95,28 @@ public class BoardHolder {
     }
     
     /**
-     * turns the boolean value of select file buttons trigger off.
+     * Turns the boolean value of select file buttons trigger off.
      */
     public void selectFileOff() {
     		topMenu.selectFileOff();
     }
     
     /**
-     *  turns the boolean value of save file buttons trigger off.
+     *  Turns the boolean value of save file buttons trigger off.
      */
     public void turnOffSaveFileChecker() {
     		topMenu.turnOffSaveFileChecker();
     }
     
     /**
-     *  turns the boolean value of switch sides buttons trigger off.
+     *  Turns the boolean value of switch sides buttons trigger off.
      */
     public void switchSidesOff() {
     		topMenu.switchSidesOff();
     }
     
    /**
-   *  turns the boolean value of select pieces buttons trigger off. 
+   *  Turns the boolean value of select pieces buttons trigger off. 
    */
     public void turnOffselectPiece() {
     		topMenu.turnOffSelectPiece();
@@ -127,7 +128,7 @@ public class BoardHolder {
     
     // button panel
     /**
-     * runs the method to flips the board from the board
+     * Runs the method to flips the board from the board
      */
     public void flipBoard() {
     		panelForButtonArray.flipBoard();
@@ -155,7 +156,7 @@ public class BoardHolder {
     }
     
     /**
-     * runs the load board method for the chess board
+     * Runs the load board method for the chess board
      */
     public void loadBoard() {
     		panelForButtonArray.loadBoard();
@@ -187,14 +188,14 @@ public class BoardHolder {
     }
        
     /**
-     * runs the method to get the x and y of the button using the last pressed button and the button array to find it
+     * Runs the method to get the x and y of the button using the last pressed button and the button array to find it
      */
     public void arrowDrawing() {
     		arrowLogic.getXAndYOfButtonInPixels(panelForButtonArray.getActionEvent(), panelForButtonArray.getButtonArray());
     }
     
     /**
-     * runs the erase function in arrowLogic to put it back to default when arrow mode is no longer active
+     * Runs the erase function in arrowLogic to put it back to default when arrow mode is no longer active
      */
     public void erraseArrow() {
     		arrowLogic.eraseArrows();
@@ -205,7 +206,7 @@ public class BoardHolder {
     
     /**
      * 
-     * gets the size of the screen and then creates the board that the user sees with there dimensions using layered panels of the arrow mode 
+     * Gets the size of the screen and then creates the board that the user sees with there dimensions using layered panels of the arrow mode 
      * and every added onto the frame to create the Graphical User Interface 
      * 
      * @param board the JFrame where the board is going to be onto

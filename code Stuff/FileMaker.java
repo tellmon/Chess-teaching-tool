@@ -56,7 +56,7 @@ public class FileMaker {
     }
 
     /**
-     * takes the data and write it to the file. By turning it into bytes then reading them into the file. 
+     * Takes the data and write it to the file. By turning it into bytes then reading them into the file. 
      * 
      * @param name the name of the file
      * @param data the data to be written into the file

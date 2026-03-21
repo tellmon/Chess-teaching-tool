@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class FileReader {
 
 	/**
-	 * this is the variable that the data is stored when the file is read out. 
+	 * This is the variable that the data is stored when the file is read out. 
 	 */
 	private static String data = "";
 
@@ -42,7 +42,7 @@ public class FileReader {
     }
 
     /**
-     * first checks if the string has any data and will return the data if it is not empty.
+     * First checks if the string has any data and will return the data if it is not empty.
      * 
      * @return it will either return the string "No data" if the data is blank or the data that is in the variable. 
      */

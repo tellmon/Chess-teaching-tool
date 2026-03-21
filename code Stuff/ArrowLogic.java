@@ -15,37 +15,37 @@ import javax.swing.JPanel;
 public class ArrowLogic extends JPanel{
 
 	/**
-	 * the x position of the first square selected
+	 * The x position of the first square selected
 	 */
 	private int xPosFirst = 0;
     
     /**
-     * the y position of the first square selected
+     * The y position of the first square selected
      */
 	private int yPosFirst = 0;
 
     /**
-     * the x position of the second square selected
+     * The x position of the second square selected
      */
 	private int xPosSecond = 0;
     
     /**
-     * the y position of the second square selected
+     * The y position of the second square selected
      */
 	private int yPosSecond = 0;
 
     /**
-     * this high of the JButton
+     * This high of the JButton
      */
 	private int hight = 0;
     
     /**
-     * the width of the JButton
+     * The width of the JButton
      */
 	private int width = 0;
 
     /**
-     * used to check if both positions have been selected
+     * Used to check if both positions have been selected
      */
 	private boolean gotBothPos = false;
 
@@ -132,7 +132,7 @@ public class ArrowLogic extends JPanel{
     }
 
     /**
-     * sets all vales to there default positions
+     * Sets all vales to there default positions
      */
     public void eraseArrows(){
         xPosFirst = 0;

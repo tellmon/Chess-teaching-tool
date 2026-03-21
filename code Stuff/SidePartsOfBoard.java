@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * this creates the sizes of the board. For the sides of the board to be displayed as the grid array.
+ * This creates the sizes of the board. For the sides of the board to be displayed as the grid array.
  */
 public class SidePartsOfBoard {
 	
@@ -31,17 +31,17 @@ public class SidePartsOfBoard {
 	private JPanel letterPanel = new JPanel(new GridLayout(0, 8));
 
     /**
-     * the string to be displayed at the bottom of the board to be broken up. 
+     * The string to be displayed at the bottom of the board to be broken up. 
      */
 	private String alphabet = "ABCDEFGH";
     
     /**
-     * the test size of the letters and number to be displayed 
+     * The test size of the letters and number to be displayed 
      */
 	private int textSize = 50;
     
     /**
-     * used to set the size of the letters when creating the class
+     * This is used to set the size of the letters when creating the class
      * 
      * @param x when creating this method it needs a text size to set the size of the letters and numbers. 
      */

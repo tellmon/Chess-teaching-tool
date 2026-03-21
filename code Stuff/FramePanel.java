@@ -66,7 +66,7 @@ public class FramePanel extends JFrame implements ActionListener{
     private JPanel boardPanel;
 
     /**
-     * loads the blank board from the file and runs setPanelUP
+     * Loads the blank board from the file and runs setPanelUP
      */
     public FramePanel(){
 
@@ -81,7 +81,7 @@ public class FramePanel extends JFrame implements ActionListener{
     }
 
     /**
-     * uses board holder with the button array to set up the button array for chess and then sets it onto the panel
+     * Uses board holder with the button array to set up the button array for chess and then sets it onto the panel
      */
     private void SetPanelUp(){
     	boardHolder.setButtonArray(buttonArray);
@@ -91,7 +91,7 @@ public class FramePanel extends JFrame implements ActionListener{
    }
 
     /**
-     * checks if arrow mode is on. If so then it will not let pieces to move else it will
+     * Checks if arrow mode is on. If so then it will not let pieces to move else it will
      * If true it will also run the boardHolders arrowDrawing to draw the arrow.
      */
     public void setPosisitonsForArrows(){ 
@@ -192,7 +192,7 @@ public class FramePanel extends JFrame implements ActionListener{
     }
 
     /**
-     * runs actionLogic with the action event to do what need to happen
+     * Runs actionLogic with the action event that triggered it
      */
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -12,62 +12,62 @@ import javax.swing.JPanel;
 public class TopMenu implements ActionListener{
 
 	/**
-	 * the button for selectFile
+	 * The button for selectFile
 	 */
 	private JButton selectFile = new JButton();
     
     /**
-     * the button for selectPiece
+     * The button for selectPiece
      */
 	private JButton selectPiece = new JButton();
     
     /**
-     * the button for switchSides
+     * The button for switchSides
      */
 	private JButton switchSides = new JButton();
     
     /**
-     * the button to turn arrow mode on
+     * The button to turn arrow mode on
      */
 	private JButton arrowMode = new JButton();
     
     /**
-     * the button to save a file 
+     * The button to save a file 
      */
 	private JButton saveFile = new JButton();
 
     /**
-     * boolean value of if arrow Mode is on
+     * Boolean value of if arrow Mode is on
      */
 	private boolean arrowModeOn = false;
     
     /**
-     * boolean value of if runSwitchSides is on
+     * Boolean value of if runSwitchSides is on
      */
 	private boolean runSwitchSides = false;
     
     /**
-     * boolean value of if selectFileCheck is on
+     * Boolean value of if selectFileCheck is on
      */
 	private boolean selectFileCheck = false;
     
     /**
-     * boolean value of if saveFileChecker is on
+     * Boolean value of if saveFileChecker is on
      */
 	private boolean saveFileChecker = false;
     
     /**
-     * boolean value of if getSelectPiece is on
+     * Boolean value of if getSelectPiece is on
      */
 	private boolean getSelectPiece = false;
     
     /**
-     * text size of the buttons
+     * Text size of the buttons
      */
 	private int textSize = 50;
     
     /**
-     * when creating the class it will set the textSize
+     * When creating the class it will set the textSize
      * @param x sets the text size of the buttons 
      */
     public TopMenu(int x) {
@@ -127,28 +127,28 @@ public class TopMenu implements ActionListener{
     }
 
     /**
-     * turns the boolean value saveFileChecker OFF
+     * Turns the boolean value saveFileChecker OFF
      */
     public void turnOffSaveFileChecker(){
         saveFileChecker = false;
     }
 
     /**
-     * turns the boolean value getSelectPiece OFF
+     * Turns the boolean value getSelectPiece OFF
      */
     public void turnOffSelectPiece(){
         getSelectPiece = false;
     }
 
     /**
-     * turns the boolean value selectFileCheck OFF
+     * Turns the boolean value selectFileCheck OFF
      */
     public void selectFileOff(){
         selectFileCheck = false;
     }
 
     /**
-     * turns the boolean value runSwitchSides OFF
+     * Turns the boolean value runSwitchSides OFF
      */
     public void switchSidesOff(){
         runSwitchSides = false;
@@ -190,7 +190,7 @@ public class TopMenu implements ActionListener{
     }
     
     /**
-     * takes the action event. Finds which button was pressed and sets the value to true or for switch sides & arrow mode its opposite value.
+     * Takes the action event. Finds which button was pressed and sets the value to true or for switch sides & arrow mode its opposite value.
      * For arrow mode it also changes it background based of its boolean value 
      * 
      * @param e the action event
@@ -230,7 +230,7 @@ public class TopMenu implements ActionListener{
     }
 
     /**
-     * runs action logic
+     * Runs action logic
      */
     @Override
     public void actionPerformed(ActionEvent e) {

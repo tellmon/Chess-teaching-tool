@@ -12,7 +12,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class SelectFile implements ActionListener {
 
     /**
-     * this is the interface that i use to save and select files for the program with a nice gui
+     * This is the interface that i use to save and select files for the program with a nice gui
      */
 	private final JFileChooser fileChooser = new JFileChooser();
 	
@@ -22,12 +22,12 @@ public class SelectFile implements ActionListener {
     private final JFrame textInput = new JFrame("Input File");
     
     /**
-     * this is the JPanel to put the JFileChooser onto. 
+     * This is the JPanel to put the JFileChooser onto. 
      */
     private final JPanel textPanel = new JPanel();
 
     /**
-     * this will check if the user has submitted a file to import
+     * This will check if the user has submitted a file to import
      */
     private boolean submitted = false;
     
@@ -42,7 +42,7 @@ public class SelectFile implements ActionListener {
     private boolean closed = false;
     
     /**
-     * this is the string where the file path will be stored. 
+     * This is the string where the file path will be stored. 
      */
     private String text = "";
 

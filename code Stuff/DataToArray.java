@@ -78,7 +78,6 @@ public class DataToArray {
     }
 
     /**
-     * 
      * @return the chessBoardArray variable.
      */
     public char[][] returnChessArray(){
@@ -87,6 +86,7 @@ public class DataToArray {
 
     /**
      * This gets the array and returns it as a string to be printed out of testing purposes. 
+     * 
      * @return a string of the chess board printed out for testing purposes. 
      */
     public String boardStateOutput(){

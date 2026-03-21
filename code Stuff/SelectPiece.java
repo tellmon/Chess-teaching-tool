@@ -27,42 +27,42 @@ public class SelectPiece implements ActionListener{
 	private JPanel donePanel = new JPanel();
 
     /**
-     * the array to hold the buttons
+     * The array to hold the buttons
      */
 	private  JButton[][] buttonArray = new JButton[2][6];
     
     /**
-     * the JButton that has done on it
+     * The JButton that has done on it
      */
 	private JButton doneButton = new JButton();
 
     /**
-     * the frame that is displayed to put everything onto
+     * The frame that is displayed to put everything onto
      */
 	private JFrame frame = new JFrame();
 
     /**
-     * boolean value to see if everything has been done
+     * Boolean value to see if everything has been done
      */
 	private boolean setUp = false;
     
     /**
-     * boolean value to see if done has been selected
+     * Boolean value to see if done has been selected
      */
 	private boolean done = false;
 
     /**
-     * the name of the button lasted pressed
+     * The name of the button lasted pressed
      */
 	private String name = "";
 
     /**
-     * timer so i can trigger the action listener on a set timer. 
+     * Timer so i can trigger the action listener on a set timer. 
      */
 	private Timer tick = new Timer(40, this);
 
     /**
-     * this sets up the panel by starting the timer and creating the buttons and setting there texts as well as sets up the done button
+     * This sets up the panel by starting the timer and creating the buttons and setting there texts as well as sets up the done button
      * and adds it to the frame after it runs setIcons to set there icons then sets setUp to true
      */
     public void setUpPanel(){
@@ -129,7 +129,7 @@ public class SelectPiece implements ActionListener{
     }
 
     /**
-     * sets the viability of the frame to false and done to false 
+     * Sets the viability of the frame to false and done to false 
      */
     public void hidePanel(){
         frame.setVisible(false);
@@ -137,14 +137,13 @@ public class SelectPiece implements ActionListener{
     }
 
     /**
-     * sets the frame visibility to true
+     * Sets the frame visibility to true
      */
     public void showPanel(){
         frame.setVisible(true);
     }
 
     /**
-     * 
      * @return the value of done
      */
     public boolean getDone(){
@@ -152,7 +151,6 @@ public class SelectPiece implements ActionListener{
     }
 
     /**
-     * 
      * @return the value of setUp
      */
     public boolean getSetUp(){
@@ -160,7 +158,7 @@ public class SelectPiece implements ActionListener{
     }   
 
     /**
-     * uses a nested for loop to get every button with a switch case to set the icon of every button with the image it needs to display of the piece
+     * Uses a nested for loop to get every button with a switch case to set the icon of every button with the image it needs to display of the piece
      */
     private void setIcons(){
 
@@ -235,7 +233,7 @@ public class SelectPiece implements ActionListener{
     }
     
     /**
-     * checks which button was pressed and then if it was a piece stores it in name else it sets done as true if it was that button
+     * Checks which button was pressed and then if it was a piece stores it in name else it sets done as true if it was that button
      * 
      * @param e the action event
      */
@@ -259,7 +257,7 @@ public class SelectPiece implements ActionListener{
     }
     
     /**
-     * runs actionLogic
+     * Runs actionLogic
      */
     @Override
     public void actionPerformed(ActionEvent e) {

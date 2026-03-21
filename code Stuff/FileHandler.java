@@ -28,22 +28,22 @@ public class FileHandler {
     
     /**
      * This returns the string of the data read from fileReader
-     * @return the string of the data that was read from fileReader
+     * @return The string of the data that was read from fileReader
      */
     public String getData() {
     		return fileReader.getData();
     }
     
     /**
-     * this gets the data from the fileReader and converts it to the 2D array. 
+     * This gets the data from the fileReader and converts it to the 2D array. 
      */
     public void turnDataToArray() {
     		dataToArray.inputing(getData());
     }
     
     /**
-     * this calls dataToArray to grab the array to return it. 
-     * @return the 2D chess array
+     * This calls dataToArray to grab the array to return it. 
+     * @return The 2D chess array
      */
     public char[][] returnChessArray(){
     		return dataToArray.returnChessArray();
