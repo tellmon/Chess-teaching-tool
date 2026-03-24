@@ -122,6 +122,7 @@ public class SelectPiece implements ActionListener{
     }
   
     /**
+     * Returns the name of the piece last clicked by this class
      * @return the name of the piece last clicked by this class
      */
     public String getName(){
@@ -144,6 +145,7 @@ public class SelectPiece implements ActionListener{
     }
 
     /**
+     * Returns the value of done
      * @return the value of done
      */
     public boolean getDone(){
@@ -151,6 +153,7 @@ public class SelectPiece implements ActionListener{
     }
 
     /**
+     * Returns the value of setUp
      * @return the value of setUp
      */
     public boolean getSetUp(){

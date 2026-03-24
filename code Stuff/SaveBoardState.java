@@ -28,6 +28,9 @@ public class SaveBoardState implements ActionListener {
      */
     private boolean closed = false;
 
+    /**
+     * Used to store the converted 2D array to the string for the file
+     */
     private String positionData = "";
     
     /**
@@ -83,6 +86,7 @@ public class SaveBoardState implements ActionListener {
     }
 
     /**
+     * Returns the file path that was submitted
      * @return the file path that was submitted
      */
     public String getName() {
@@ -90,6 +94,7 @@ public class SaveBoardState implements ActionListener {
     }
 
     /** 
+     * Returns the boolean value of submitted
      * @return the boolean value of submitted
      */
     public boolean isSubmitted() {
@@ -97,6 +102,7 @@ public class SaveBoardState implements ActionListener {
     }
 
     /**
+     * Returns the boolean value of setUpDone
      * @return the boolean value of setUpDone
      */
     public boolean isSetupDone() {
@@ -104,6 +110,7 @@ public class SaveBoardState implements ActionListener {
     }
     
     /**
+     * Returns the boolean value of closed
      * @return the boolean value of closed
      */
     public boolean isClosed() {
@@ -111,7 +118,7 @@ public class SaveBoardState implements ActionListener {
     }
 
     /**
-     * resets all the values to there default states
+     * Resets all the values to there default states
      */
     public void reset() {
         setupDone = false;

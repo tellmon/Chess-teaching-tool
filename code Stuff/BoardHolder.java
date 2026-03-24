@@ -67,6 +67,7 @@ public class BoardHolder {
     //top Menu
     
     /**
+     * Returns the boolean value of the buttons trigger for  select file
      * @return the boolean value of the buttons trigger for  select file
      */
     public boolean checkSelectFile() {
@@ -74,6 +75,7 @@ public class BoardHolder {
     }
     
     /**
+     * Returns the boolean value of the buttons trigger for save file
      * @return the boolean value of the buttons trigger for save file 
      */
     public boolean saveFileChecker() {
@@ -81,6 +83,7 @@ public class BoardHolder {
     }
     
     /**
+     * Return the boolean value of the buttons trigger for select Piece
      * @return the boolean value of the buttons trigger for select Piece
      */
     public boolean getSelectedPiece() {
@@ -88,6 +91,7 @@ public class BoardHolder {
     }
     
     /**
+     * Returns the boolean value of the buttons trigger for the switch sides of the board file 
      * @return the boolean value of the buttons trigger for the switch sides of the board file 
      */
     public boolean checkSwitchSides() {
@@ -135,6 +139,7 @@ public class BoardHolder {
     }
     
     /**
+     * Sets the name of the last button that was pressed. 
      * @param name the string you want to put onto the button that was last pressed
      */
     public void setLastButtonText(String name) {
@@ -142,13 +147,15 @@ public class BoardHolder {
     }
     
     /**
-     * @param buttonArray the chess board 2D array of char's you want to set as the new boardd
+     * sets the button array for the board as the 2D array of char
+     * @param buttonArray the chess board 2D array of char's you want to set as the new board
      */
     public void setButtonArray(char[][] buttonArray) {
     		panelForButtonArray.setButtonArray(buttonArray);
     }
     
     /**
+     * Returns the JPanel of the button array
      * @return the JPanel of the button array
      */
     public JPanel getButtonArrayJPanel() {
@@ -163,6 +170,7 @@ public class BoardHolder {
     }
     
     /**
+     * Returns the board as a 2D char array
      * @return the board as a 2D char array
      */
     public char[][] getBoardState(){
@@ -170,7 +178,8 @@ public class BoardHolder {
     }
     
     /**
-     * @param setLetMoveTORF sets the value of let move for board based of this boolean value
+     * Sets the value of let move for the board based of this boolean value
+     * @param setLetMoveTORF sets the value of let move for the board based of this boolean value
      */
     public void setLetMove(Boolean setLetMoveTORF) {
     		panelForButtonArray.setLetMove(setLetMoveTORF);
@@ -181,6 +190,7 @@ public class BoardHolder {
     // arrow stuff
     
     /**
+     * Returns the boolean value of if arrow mode is active or not
      * @return the boolean value of if arrow mode is active or not
      */
     public boolean checkArrowMode() {        

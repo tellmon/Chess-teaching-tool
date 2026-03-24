@@ -11,6 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * Panel for the button array which is the chess board in the centre panel
+ */
 public class PanelForButtonArray implements ActionListener{
 
 	/**
@@ -369,6 +372,7 @@ public class PanelForButtonArray implements ActionListener{
     }
 
     /**
+     * Sets the value of letMove from the passed variable
      * @param letMove the value to set letMove
      */
     public void setLetMove(boolean letMove){
@@ -376,7 +380,8 @@ public class PanelForButtonArray implements ActionListener{
     }
 
     /**
-     * @return the last event trigured
+     * Returns the last event Triggered
+     * @return an ActionEvent of the last event triggered
      */
     public ActionEvent getActionEvent(){
         return lastEvent;
@@ -391,21 +396,24 @@ public class PanelForButtonArray implements ActionListener{
     }
 
     /**
-     * @return the button array
+     * Returns the buttonArray
+     * @return the button array as a 2D array of JButtons
      */
     public JButton[][] getButtonArray(){
         return buttonArray;
     }
 
     /**
-     * @return the last button pressed
+     * Gets the last button pressed
+     * @return the last button pressed as a JButton
      */
     public JButton getLastButton(){
         return lastButtonPressed;
     }
 
     /**
-     * @return gets the button array and takes all the texts and puts it to the chessBoardState that is returned as the 2D array
+     * Gets the button array and takes all the texts and puts it to the chessBoardState
+     * @return chessBoardState that is returned as the 2D array
      */
     public char[][] getBoardState(){
         for (int x = 0; x < 8; x ++){

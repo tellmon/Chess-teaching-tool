@@ -162,6 +162,7 @@ public class TopMenu implements ActionListener{
     }
     
     /**
+     * Returns the value of getSelectPiece
      * @return the value of getSelectPiece
      */
     public boolean getSelectPiece(){
@@ -169,6 +170,7 @@ public class TopMenu implements ActionListener{
     }
 
     /**
+     * Returns the value of saveFileChecker
      * @return the value of saveFileChecker
      */
     public boolean checkSaveFileChecker(){
@@ -176,6 +178,7 @@ public class TopMenu implements ActionListener{
     }
 
     /**
+     * Returns the value of selectFileCheck
      * @return the value of selectFileCheck
      */
     public boolean checkSelectFile(){
@@ -183,6 +186,7 @@ public class TopMenu implements ActionListener{
     }
 
     /**
+     * Returns the value of arrowModeOn
      * @return the value of arrowModeOn
      */
     public boolean checkArrowMode(){

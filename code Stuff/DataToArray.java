@@ -78,7 +78,8 @@ public class DataToArray {
     }
 
     /**
-     * @return the chessBoardArray variable.
+     * Returns the chessBoardArray variable.
+     * @return a 2D char array.
      */
     public char[][] returnChessArray(){
         return chessBoardArray;

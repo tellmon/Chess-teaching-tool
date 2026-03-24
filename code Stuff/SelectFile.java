@@ -78,13 +78,15 @@ public class SelectFile implements ActionListener {
     }
 
     /**
+     * Returns the file path that was submitted
      * @return the file path that was submitted
      */
     public String getText() {
         return text;
     }
 
-    /** 
+    /**
+     * Returns the boolean value of submitted 
      * @return the boolean value of submitted
      */
     public boolean isSubmitted() {
@@ -92,6 +94,7 @@ public class SelectFile implements ActionListener {
     }
 
     /**
+     * Returns the boolean value of setUpDone
      * @return the boolean value of setUpDone
      */
     public boolean isSetUpDone() {
@@ -99,6 +102,7 @@ public class SelectFile implements ActionListener {
     }
 
     /**
+     * Returns the boolean value of closed
      * @return the boolean value of closed
      */
     public boolean isClosed() {
@@ -106,7 +110,7 @@ public class SelectFile implements ActionListener {
     }
 
     /**
-     * resets all the values to there default states
+     * Resets all the values to there default states
      */
     public void reset() {
         setUpDone = false;
